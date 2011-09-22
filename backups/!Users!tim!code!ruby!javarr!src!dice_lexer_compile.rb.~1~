@@ -1,7 +1,0 @@
-require 'rubygems'
-require 'dhaka'
-
-require 'dice_lexer'
-
-lexer = Dhaka::Lexer.new(DiceLexerSpecification)
-File.open('dice_lexer.rb', 'w') {|file| file << lexer.compile_to_ruby_source_as(:DiceLexer)}

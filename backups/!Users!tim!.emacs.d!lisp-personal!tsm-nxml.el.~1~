@@ -1,3 +1,0 @@
-(load "~/nxml-mode-200YMMDD/rng-auto.el")
-
-(provide 'tsm-nxml)

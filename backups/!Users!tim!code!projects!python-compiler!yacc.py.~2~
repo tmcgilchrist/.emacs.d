@@ -1,8 +1,0 @@
-#!/usr/bin/env python
-import ply.yacc as yacc
-
-from lex import tokens
-
-def p_expression_plus(p):
-    'expression : expression PLUS term'
-    

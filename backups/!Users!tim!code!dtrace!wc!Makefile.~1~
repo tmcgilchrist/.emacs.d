@@ -1,9 +1,0 @@
-CC=gcc
-CFLAGS=-m64
-DTRACE=dtrace
-
-simple: simple_probes.o simple.o
-	$(CC) -o simple -m64 simple_probes.o simple.o
-
-simple_probes.o: simple.o simple_probes.d
-	$(DTRACE) -h -64 -s simple_probes.d simple.o

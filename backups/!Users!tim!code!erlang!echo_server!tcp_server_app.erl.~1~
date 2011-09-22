@@ -1,9 +1,0 @@
--module(tcp_server_app).
-
--behaviour(application).
-
-%% Internal API
--export([start_client/0]).
-
-%% Application and Supervisor callbacks.
--export

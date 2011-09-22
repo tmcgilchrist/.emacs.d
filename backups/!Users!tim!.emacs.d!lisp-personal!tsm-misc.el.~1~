@@ -1,8 +1,0 @@
-;;; Various useful functions
-
-;; reload .emacs file (useful for editing .emacs itself :)
-(global-set-key "\M-e" 'reload-dotemacs)
-(defun reload-dotemacs () 
-  "Reload .emacs" 
-  (interactive)
-  (load-file "~/.emacs"))  

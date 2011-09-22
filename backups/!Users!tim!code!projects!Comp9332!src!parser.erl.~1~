@@ -1,5 +1,0 @@
--module(parser).
--author('Tim McGilchrist').
--compile(export_all).
-
-% Reads in the data file and creates a usable data structure.

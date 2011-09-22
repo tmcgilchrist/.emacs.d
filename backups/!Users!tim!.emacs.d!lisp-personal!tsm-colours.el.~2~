@@ -1,6 +1,0 @@
-(set-face-background 'default "white") 
-(set-face-foreground 'default "black") 
-
-(set-cursor-color "red")
-
-(provide 'tsm-colours)

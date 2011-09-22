@@ -1,8 +1,0 @@
-#!/opt/local/bin/ruby
-require 'rubygems'
-require 'dhaka'
-require 'DiceGrammar'
-
-parser = Dhaka::Parser.new(DiceGrammar)
-File.open('DiceParser.rb', 'w') {|file| file << parser.compile_to_ruby_source_as(:DiceParser)}
-File.open('dice_parser.dot', 'w') {|file| file << parser.to_dot}

@@ -1,4 +1,0 @@
-class Link < ActiveRecord::Base
-
-  validate :original_url, :presence => :true, :uniqueness => :true
-end

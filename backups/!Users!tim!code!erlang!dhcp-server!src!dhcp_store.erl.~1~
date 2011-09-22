@@ -1,7 +1,0 @@
--module(dhcp_store).
-
--export([
-         init/0,
-         lookup/2,
-         create/1
-         ]).

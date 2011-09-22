@@ -1,5 +1,0 @@
-;;; ECB customisation
-
-(load-file "/Users/tim/.emacs.d/lisp/cedet-1.0pre4/common/cedet.el")
-(add-to-list 'load-path "/Users/tim/.emacs.d/lisp/ecb-2.32")
-(require 'ecb)

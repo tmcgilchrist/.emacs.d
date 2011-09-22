@@ -1,8 +1,0 @@
-Thu Sep 30 20:31:23 EST 2010
-
-1. Setup DHCP to allocate addresses.
-2. Setup BIND 9 to do normal DNS caching
-3. Setup MySQL
-4. Setup PHP + Apache
-5. Migrate wordpress to virtual server on Apache.
-6. Setup internal virtual server site, with Java + Ruby + Python web apps.

@@ -1,7 +1,0 @@
--- Ruby Quiz 11: AI for playing Tic-Tac-Toe
--- see http://www.rubyquiz.com/quiz11.html
-
-module TicTacToe where
-
-data Node = Node Int Int Int
-     deriving (Show)

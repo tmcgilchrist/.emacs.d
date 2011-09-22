@@ -1,6 +1,0 @@
-
-encrypt x y = putStrLn "x:"x ++ ", y:" ++  y
-
-main :: IO ()
-main = do args <- getARgs
-          enrypt (args !! 0) (args !! 1)

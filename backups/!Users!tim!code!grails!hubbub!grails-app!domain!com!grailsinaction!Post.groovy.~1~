@@ -1,7 +1,0 @@
-package com.grailsinaction
-
-class Post {
-
-    static constraints = {
-    }
-}

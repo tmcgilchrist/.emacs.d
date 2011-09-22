@@ -1,9 +1,0 @@
-class Token
-
-  def initialize(kind, spelling, position)
-    @kind = kind
-    @spelling = spelling
-    @position = position
-  end
-
-end

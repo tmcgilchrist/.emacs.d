@@ -1,8 +1,0 @@
-class Link < ActiveRecord::Base
-
-    validates :original_url, :presence => true
-    
-    # converts an original_url to a unique url
-    def convert_url
-    end
-end

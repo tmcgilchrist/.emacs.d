@@ -1,4 +1,0 @@
-(set-face-background 'default "white") 
-(set-face-foreground 'default "black") 
-
-(provide 'tsm-colours)

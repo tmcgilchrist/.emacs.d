@@ -1,9 +1,0 @@
-class Foo
-
-  # spelling of the element
-
-  # position in source file (line|column)
-
-  # Link elements into a parse tree
-  
-end

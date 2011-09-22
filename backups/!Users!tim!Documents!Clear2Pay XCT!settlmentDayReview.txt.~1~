@@ -1,7 +1,0 @@
-3 Main areas:
-
--> Determine SettlementDay for incoming CreditTransferInitiation (IncomingInstructionComplement)
--> Validate SettlementDay (VS)
--> Determine Outgoing SettlementDay (Routing)
-
-

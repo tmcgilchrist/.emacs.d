@@ -1,5 +1,0 @@
-        Rough Order of Priority
-- setup a basic link model in db
-- add LinksController to create a new link
-      -> add show a link
-      -> add index action to show all links

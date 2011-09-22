@@ -1,6 +1,0 @@
-module UrlGenerator
-
-  def generate_url(original_url)
-
-  end
-end
