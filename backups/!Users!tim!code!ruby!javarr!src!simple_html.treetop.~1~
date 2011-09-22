@@ -1,0 +1,14 @@
+grammar SimpleHTML
+
+  rule document
+    (text / tag)*
+  end
+
+  rule text
+    [^<]+
+  end
+
+  rule tag
+     "<" [^>]+ ">"
+  end
+end

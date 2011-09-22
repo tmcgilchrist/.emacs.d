@@ -1,0 +1,13 @@
+grammar TinyC
+
+   rule program
+      func-decl
+   end
+
+   rule func-decl
+      type 
+   end
+
+   rule type
+      "void" | "boolean" | "int" | "float"
+   end

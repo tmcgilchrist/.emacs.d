@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+struct entry {
+    unsigned key;
+    char value;
+};
+
+struct entry table[128]; 
+
+/*
+ * How to print out Hex values from int?
+ * Force variable to be 8 bit or 64 bit?
+ * 
+ */
+void setup_table();
+void print_table();
+
+
+int main(int argc, char* argv[]) 
+{
+    char plaintext[] = "enrypt this";
+
+    /* Supposed to be 64 bits */
+    long key = 0xffffff;
+    
+    setup_table();
+    print_table();
+
+    /*
+     * li 0x00000 $r4       # Base address of lookup table
+     * li 0x0000F8 $r5      # Base address of plaintext
+     * li 0x00F000 $r8      # Addres of Encryption Key
+     *
+     * li 0x0 $r7           # Counter for loop
+     * 
+     * lw $r7($r8) $r0        # load 8 bits of key $r0
+     * lw $r7($r5) $r1        # load first 8 bit character $r1
+     * xor $r1 $r2 $r3        # <op> <src1> <src2> <dest>
+     * lw $r3($r4) $r0        # load value from lookup table
+     * add $r7 0x01 $r7       # increment loop
+     *                        # Jump to beginning of block
+     */
+}
+
+void setup_table() {
+    int i;
+
+    for (i=0; i<128; i++) {
+        table[i].key = 0x000+i;
+        table[i].value = i;            
+    }
+}
+
+void print_table() {
+    int i;
+    
+    printf("Table:\n\tKey\tValue\t\tKey\tValue\t\tKey\tValue\t\tKey\tValue\n");
+    for (i=0; i<32; i++) {
+        printf("\t'%d'\t'%d'\t\t'%c'\t'%d'\t\t'%c'\t'%d'\t\t'%c'\t'%d'\n", 
+               table[i].key, table[i].value,
+               table[i+32].key, table[i+32].value,
+               table[i+64].key, table[i+64].value,
+               table[i+96].key, table[i+96].value);
+    }
+}

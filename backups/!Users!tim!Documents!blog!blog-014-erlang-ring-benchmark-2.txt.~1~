@@ -1,0 +1,55 @@
+    __YARB: Yet Another Ring Benchmark__
+
+In Joe Armstrong's Erlang book he has en exercise to:
+
+"Write a ring benchmark. Create N processes in a ring. Send a message round the ring M times so that a total or N*M messages get sent. Time how long it takes for different values of N and M.
+
+Write a similar program in some other lanugage you are familar with. Compare the
+ results. Write a blog and public the results on the Internet!
+"
+So far I've done the Erlang section of this. It turns out to be pretty straight forward in Erlang, not surprisingly.
+
+-module(ring).
+-compile(export_all).
+-import(lists, [foreach/2, map/2, reverse/1]).
+
+main([A,B]) ->
+    N = list_to_integer(A),
+    M = list_to_integer(B),
+    io:format("~w: ~w processes with ~w messages\n", [self(), N, M]),
+
+Read in the number of nodes and messages from stdio using list_to_integer().
+
+[First|_] = Pids = for(1, N, fun() -> spawn(fun() -> loop() end) end),
+setupLoop(Pids),
+
+Next we spawn the required number of threads and setup the loop structure, so each thread knows the PID of the next in the loop.
+
+sendMsgs(M, First)
+
+Then we start sending the messages around the loop. 
+
+SendMsgs simply sends a {relay} message to the first thread in the loop and waits for a reply from the last thread in the loop. When it receives a message from the last thread, it decrements the message count and sends another {relay} message.
+
+sendMsgs(0, First) ->
+    First ! {relay},
+    receive
+        {relay} ->
+            io:format("~w: Finished ~w loops.~n", [self(), 0])
+    end;
+sendMsgs(N, First) ->
+    First ! {relay},
+    receive
+        {relay} ->
+            sendMsgs(N-1, First)
+    end.
+
+To setup the loop, we take the first 2 PIDs sending the second PID to the first as a message indicating that it's the next thread in the loop. When we get down to the last PID, the next thread is the main thread.
+
+setupLoop([P]) ->
+    P ! {next, self()};
+setupLoop([P1,P2|Rest]) ->
+    P1 ! {next, P2},
+    setupLoop([P2|Rest]).
+
+The second language to test against was going to be Haskell but I haven't quite worked out how to do the message passing yet.

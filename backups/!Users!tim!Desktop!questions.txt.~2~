@@ -1,0 +1,25 @@
+- What network do the OSPF routers communication on?
+- What OSPF areas are there within the network?
+
+- AS number required for BGP and what is it used for?
+
+Have you used ISIS or BGP?
+How does a host running BGP and OSPF handle updates to routing tables?
+
+Why is the filtering on prefix length required? why would prefixes longer than 24 and shorter than 8 bits be a problem.
+
+RFC 1918?
+
+What is the significance of a PPP link in routing? How does this differ from an ADSL or Cable connection?
+
+Backbone area for OSPF? Does this mean each router needs a direct physical connection to this network?
+
+Metric in OSPF? Lower value is better.
+
+CARP??
+
+How would the routing table look if you have 2 OSPF routes of the same value? It's supposed to round robin between those routes but how does this work in practice?
+
+Does a Point-To-Point network get it's own IP range?
+
+

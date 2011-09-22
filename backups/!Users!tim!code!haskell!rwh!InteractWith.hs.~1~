@@ -1,0 +1,18 @@
+-- file: ch-4/InteractWith.hs
+-- Save thiis in a source file, eg Interact.hs
+
+import System.Environment (getARgs)
+
+interactWIth function inputFile outputFile = do
+  input <- readFile inputFile
+  writeFile outputFile (function input)
+
+main = mainWith myFunction
+  where mainWith function = do
+    args <- getArgs
+    case args of
+      [input, output] -> interactWith function input output
+      _ -> putStrLn "error: exactly two arguments needed"
+
+    -- replace "id" with the name of our function below
+    myFunction = id

@@ -1,0 +1,214 @@
+/* OpenBSD 3.7 Device Driver / Kernel Module Template/Skeleton
+   *******************************************************
+   (Based on the template by Peter Werner)
+
+ Compile with: compile.sh
+ Install the device entry in /dev with dev-install.sh
+ Load the module with install.sh
+
+ Test with chardevtest.c or test.sh
+
+ TROUBLESHOTING:
+ **************
+ /usr/include/sys/systm.h:308:33: lib/libkern/libkern.h: No such file or directory
+ -> install kernel source
+ Get sys.tar.gz from ftp://ftp.openbsd.org/pub/OpenBSD/3.7/
+ Untar it with:
+ # tar xzf sys.tar.gz
+ in /usr/src
+
+ modload: not loading symbols: kernel does not support symbol table loading:
+    Operation not permitted
+ modload: can't reserve memory: Operation not permitted
+ --> change securelevel to -1 in /etc/rc.securelevel and reboot.
+
+*/
+
+#include <sys/param.h>
+#include <sys/fcntl.h>
+#include <sys/systm.h>
+#include <sys/ioctl.h>
+#include <sys/exec.h>
+#include <sys/conf.h>
+#include <sys/lkm.h>
+
+#define MAXMSGLEN 100
+
+struct ourdev_io {
+	int value;
+	char msg[MAXMSGLEN];
+};
+
+#define ODREAD		_IOR('O', 0, double)
+#define ODWRITE	_IOW('O', 1, double)
+
+// prototypes for our supported operations, namely open, close, read and ioctl 
+int	ourdevopen __P((dev_t dev, int oflags, int devtype, struct proc *p));
+int 	ourdevclose __P((dev_t dev, int fflag, int devtype, struct proc *p));
+int	ourdevread __P((dev_t dev, struct uio *uio, int ioflag));
+int	ourdevwrite __P((dev_t dev, struct uio *uio, int ioflag));
+int	ourdevioctl __P((dev_t dev, u_long cmd, caddr_t data, int fflag, 
+			struct proc *p));
+int	ourdev_handler __P((struct lkm_table *lkmtp, int cmd));
+
+/* 
+ * struct ourdev_io is defined in common.h, our device will use the ioctl call
+ * to get and set its values, along with the read operation on the device.
+ */
+static struct ourdev_io dio;
+
+/* 
+ * Here we initialise the operations vector for our device. 
+ */
+cdev_decl(ourdev);
+static struct cdevsw cdev_ourdev = { 	dev_init(1,ourdev,open),
+                                       dev_init(1,ourdev,close),
+                                       dev_init(1,ourdev,read),
+                                       dev_init(1,ourdev,write),
+                                       dev_init(1,ourdev,ioctl),
+                                       (dev_type_stop((*))) lkmenodev,
+                                       (dev_type_mmap((*))) lkmenodev
+                                    };
+/* 
+ * Initialise an internal structure for the lkm interface. The first argument
+ * is the name of the module, which will appear when viewed with modstat.  The
+ * second is the type of the device, in this case LM_DT_CHAR for a character 
+ * device. Thirdly we have the position in the cdevsw[] table we want our 
+ * operations structure stored. As with the system call, the value -1 means we
+ * dont mind where it is and the next available slot should be allocated. 
+ * Finally we pass our initialised struct cdevsw
+ */
+MOD_DEV("ourdev", LM_DT_CHAR, -1, &cdev_ourdev)
+
+// The actions for when the device is opened, in this case just say hello. 
+int
+ourdevopen(dev, oflags, devtype, p)
+	dev_t dev;
+	int oflags, devtype;
+	struct proc *p;
+{
+//	printf("device opened, hi!\n");
+	return(0);
+}
+
+// Actions for when the device is closed, again just print a small message. 
+int
+ourdevclose(dev, fflag, devtype, p)
+	dev_t dev;
+	int fflag, devtype;
+	struct proc *p;
+{
+//	printf("device closed! bye!\n");
+	return(0);
+}
+
+// Actions for the read operation on the device.  Here we copy out the current
+// value of the string stored in our internal struct ourdev_io. 
+int
+ourdevread(dev, uio, ioflag)
+	dev_t dev;
+	struct uio *uio;
+	int	ioflag;
+{
+	int resid = MAXMSGLEN;
+	int error = 0;
+
+	//printf("reading...\n");
+	do {
+		if (uio->uio_resid < resid)
+			resid = uio->uio_resid;
+		error = uiomove(dio.msg, resid, uio);	
+	} while (resid > 0 && error == 0);
+	return(error);
+}
+
+// Actions for the writing operation on the device.
+int
+ourdevwrite(dev, uio, ioflag)
+	dev_t dev;
+	struct uio *uio;
+	int	ioflag;
+{
+	int resid = MAXMSGLEN;
+	int error = 0;
+	//printf("writing...\n");
+	do {
+		if (uio->uio_resid < resid)
+			resid = uio->uio_resid;
+		error = uiomove(dio.msg, resid, uio);	
+	} while (resid > 0 && error == 0);
+	return(error);
+}
+
+/* 
+ * Code for the ioctl operation. We define two possible operations, one for 
+ * reading the current values of the internal struct ourdev_io, and one for
+ * setting the values. We default to returning the error "Inappropriate ioctl 
+ * for device".
+ */
+double testval = 3.14159;
+int
+ourdevioctl(dev, cmd, data, fflag, p)
+	dev_t dev;
+	u_long cmd;
+	caddr_t data;
+	int fflag;
+	struct proc *p;
+{
+	struct ourdev_io *d;
+	int error = 0;
+	double *userval;
+
+	switch(cmd) {
+	case ODREAD:
+		userval = (double*)data;
+		*userval = testval;
+		break;
+
+	case ODWRITE:
+		if ((fflag & FWRITE) == 0)
+			return(EPERM);
+		userval = (double*)data;
+		testval = *userval;
+		break;
+
+	default:
+		error = ENOTTY;
+		break;
+	}
+	
+	return(error);
+}
+
+/*
+ * Our external entry point. Much like the system call example, we have a 
+ * handler for when the module is loaded, but unlike the system call we take
+ * no special action when the module is unloaded.
+ */
+int
+ourdev(lkmtp, cmd, ver)
+	struct lkm_table *lkmtp;
+	int cmd;
+	int ver;
+{
+	DISPATCH(lkmtp, cmd, ver, ourdev_handler, lkm_nofunc, lkm_nofunc)
+}
+
+/*
+ * Our handler for when the module is loaded. We set up our internal structure
+ * with some initial values, which can later be changed using ioctl(2). This 
+ * will only be used when the module is loaded, but we check the action anyway.
+ */
+int
+ourdev_handler(lkmtp, cmd)
+	struct lkm_table *lkmtp;
+	int cmd;
+{
+	struct lkm_dev *args = lkmtp->private.lkm_dev;
+	if (cmd == LKM_E_LOAD) {
+		dio.value = 13;
+		strncpy(dio.msg,"hello world!\n", MAXMSGLEN - 1);
+		printf("loading module %s\n", args->lkm_name);
+	}
+	return 0;
+}

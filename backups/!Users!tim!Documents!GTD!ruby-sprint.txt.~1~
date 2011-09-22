@@ -1,0 +1,20 @@
+        Ruby Sprint
+
+- read The Well Grounded Rubyist
+- read Rails 3 tutorial
+- read why's (poignant) guide to ruby 
+  http://mislav.uniqpath.com/poignant-guide/book/
+
+-> Open Source Ruby to contribute to?
+-> Rewrite lis.py in ruby
+  http://norvig.com/lispy.html
+-> Ruby Quiz
+   http://www.rubyquiz.com/
+-> rvm cheat sheet?
+
+1. Read Ruby / Rails books.
+2. Practice Ruby / Rails on my own.
+3. Contribute & understand existing Ruby projects.
+
+
+Use rvm to setup Ruby environments on OSX.

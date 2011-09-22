@@ -1,0 +1,34 @@
+require 'rubygems'
+require 'hpricot'
+
+
+doc = File.open("new.html") { |f| Hpricot(f) }
+
+elements = doc.search("/html/body/table//tr")
+elements.each do |table|
+  # puts "table\n"
+  # for each element
+  col = (table/"td")
+  # find file in file system
+  # remove preceeding com.*
+
+  name, match, suffix = col[3].inner_html.rpartition('.')
+
+  sourceFile = %x[find . -name "#{suffix}.java"]
+  if (sourceFile.length > 0 && col[8].inner_html.length >0)
+    # sourceFile.split!
+    files = sourceFile.split
+    files.each do |file|
+      if (file || file.chomp!.length > 0)
+        puts "Replacing #{suffix}"
+        puts "Reading #{sourceFile}"
+        puts "@#{col[8].inner_html}"
+        text = File.read(file)
+        # forward to first instance of "*/"
+        # place @ tag in first comment in file
+        File.open(file, 'w+') {|f| 
+          f.write(text.sub(/\*\//, "* @#{col[8].inner_html}\n */")); f.close() }
+      end
+    end
+  end
+end

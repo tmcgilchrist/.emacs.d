@@ -1,0 +1,40 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+MARQ-168 - Rename Bookable Resources to Unit Convenor Checklist
+  -> Page on Unit Offering home page ACCG201
+
+  -> Maintain Unit Convenor Checklist in Admin side menu
+
+MARQ-255 - Change application name to Units, includes all previous names and acronyms like Marquis, UIS
+
+  -> Show breadcrumbs and side menu
+
+  -> Changing the hostnames will be happening, Tim to inform testers and other interested parties of the name change.
+
+MARQ-264 - System Administration screen to change the default staff and public years, and to change the years data is imported from handbook for.
+
+  -> login as admin and change years so public year == 2010 
+
+  -> show public get redirected to 2010
+
+  -> show staff get 2011 and can view 2010
+
+MARQ-267 - Import data from Handbook for multiple years and roll over data between years.
+Data to roll over:
+   - Graduate Capabilities
+   - Policies and Procedures Template
+
+MARQ-288 - Roll over extra data when importing a new year.
+Data to roll over:
+   - Assignments of staff as faculty or department managers
+   - Interpretations of graduate capabilities
+
+Both only if the Department/Faculty names have not changed.
+
+MARQ-274 - Reorder assessment tasks within Unit Guide.
+
+BUGS
+
+MARQ-289 - Consultation Hours were not appearing on the General Information section of a Unit Offering, for both the web page and the print verion.

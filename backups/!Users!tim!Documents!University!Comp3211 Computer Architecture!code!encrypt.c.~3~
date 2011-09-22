@@ -1,0 +1,20 @@
+void main() {
+    char a = 'H';
+    char key = 0x12;
+    char c = 0x0;
+    char constant = 0x0;
+    char t = 0x0;
+    int mask = 0xFFFFFF00;
+
+    printf("a:0x%x, key:0x%x, c:0x%x mask:0x%x\n", a, key, c, mask);
+    c = a ^ key;
+    printf("%x\n", c);
+    t = (c + constant) % 16;
+    printf("%x\n", t);
+    t = t << 4;
+    printf("%x\n", t);
+    c = c >> 4;
+    printf("%x\n", c);
+    c = t | c;
+    printf("%x\n", c);
+}

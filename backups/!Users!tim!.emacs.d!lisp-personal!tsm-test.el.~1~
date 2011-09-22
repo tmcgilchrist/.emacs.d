@@ -1,0 +1,8 @@
+(global-set-key "\M-/" 'hippie-expand)
+
+(setq abbrev-file-name "~/.emacs.d/abbrev_defs")
+(quietly-read-abbrev-file)
+
+(define-abbrev-table 'python-mode-abbrev-table 
+  '(("pdb" "import pbd; pdb.set_trace()" nil 0)))
+						 

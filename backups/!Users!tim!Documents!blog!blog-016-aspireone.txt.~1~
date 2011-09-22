@@ -1,0 +1,34 @@
+I picked up a cheap AspireOne of a colleague of mine, for the princely sum of $100.
+
+When the chance came to pick up a cheap netbook recently I jumped at the chance. A colleague of mine wanted to get rid of an AspireOne 110L and only wanted $100. Who was I to argue?
+
+It started off with the standard install of Linspire, which considering the target audience of a netbook is usually web browsing etc, was a pretty nice setup. But this wasn't what I had in mind for my netbook.
+
+What I really wanted was to run either Linux or one of the BSDs, as the Aspire was purchased with the express intent of playing around with different OSs without nuking my main laptop.
+
+After a bit of searching around the likely candidates were narrowed down to the following choices:
+ - Ubuntu 8.10,
+ - NetBSD 4.0, or
+ - OpenBSD 4.4
+
+I decided to start with Ubuntu, expecting greater hardware support and an easier install.
+
+    Ubuntu
+I basically followed the excellent instructions on the Ubuntu documentation site.
+https://help.ubuntu.com/community/AspireOne110L
+
+The installation basically consisted of creating a bootable USB stick using UNetbootin .
+http://unetbootin.sourceforge.net/
+It supports either Linux or Windows and can create a bootable USB key for a wide range of Linux variant and some BSDs. The BSD support seems rather patchy and doesn't cover all the BSDs, with OpenBSD being the most important omission for me.
+
+After the USB booted I followed these general guidelines for the install, https://help.ubuntu.com/community/AspireOne110L#Installation%20Guide.
+The highlights being:
+ * use ext2 for the root filesystem
+ * no swap partition, I've got 1.5gb of RAM.
+ * making sure grub is installed where it should be.
+
+Apart from that I pick default options and it worked pretty well. The SSD drive is a bit slow on the install and all up it probably took 2-3 hrs.
+
+After the install everything was working except the wireless. The ath5k driver just didn't seem to work so I ended up with the madwifi option. https://help.ubuntu.com/community/AspireOne110L#WLan
+
+It required the linux headers for the linux kernel version running so a quick 'sudo aptitude install' later I had that and the madwifi driver was compiled and working.

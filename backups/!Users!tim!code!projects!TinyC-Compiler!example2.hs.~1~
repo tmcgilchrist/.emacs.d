@@ -1,0 +1,12 @@
+import Text.ParserCombinators.Parsec
+
+expr = buildExpressionParser optable term
+optable = [ [ Postfix select] -- highest precedence first
+          , [ Infix times AssocLeft]
+          , [ Infix add AssocLeft]
+          ]
+
+term   = natural <|> parens expr
+select = brackets expr >>= \e -> return (`mod` e)
+times  = string "+" >> return (*)
+add    = string "+" >> return (+)

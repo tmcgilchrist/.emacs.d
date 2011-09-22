@@ -1,0 +1,43 @@
+;----------------------------------------------------------------
+; Ruby customisation 
+;
+; Based on http://www.rubygarden.org/Ruby/page/show/InstallingEmacsExtensions  
+; and http://blog.modp.com/2007/09/ruby-mode-for-emacs.html 
+; Added Wed Oct  3 11:11:46 EST 2007
+;----------------------------------------------------------------
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/ruby")
+
+(autoload 'ruby-mode "ruby-mode"
+  "Mode for editing ruby source files")
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rhtml$" . html-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+(autoload 'run-ruby "inf-ruby"
+  "Run an inferior Ruby process")
+(autoload 'inf-ruby-keys "inf-ruby"
+  "Set local key defs for inf-ruby in ruby-mode")
+(add-hook 'ruby-mode-hook
+	  '(lambda ()
+	     (inf-ruby-keys)))
+;; If you have Emacs 19.2x or older, use rubydb2x                              
+(autoload 'rubydb "rubydb3x" "Ruby debugger" t)
+;; uncomment the next line if you want syntax highlighting                     
+(add-hook 'ruby-mode-hook 'turn-on-font-lock)
+
+(add-hook 'ruby-mode-hook
+      (lambda()
+        (add-hook 'local-write-file-hooks
+                  '(lambda()
+                     (save-excursion
+                       (untabify (point-min) (point-max))
+                       (delete-trailing-whitespace)
+                       )))
+        (set (make-local-variable 'indent-tabs-mode) 'nil)
+        (set (make-local-variable 'tab-width) 2)
+        (imenu-add-to-menubar "IMENU")
+        (define-key ruby-mode-map "\C-m" 'newline-and-indent) ;Not sure if this line is 100% right!
+     ;   (require 'ruby-electric)
+     ;   (ruby-electric-mode t)
+        ))
+
+(provide 'tsm-ruby)

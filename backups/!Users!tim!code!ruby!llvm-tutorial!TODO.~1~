@@ -1,0 +1,22 @@
+Purpose: Create a basic compiler that targets llvm IR
+
+1. Define a basic language outline.
+2.  
+
+
+
+
+parslet
+llvm
+bundler for standalone applications
+
+
+
+
+
+
+LLVM SSA
+
+Pure functions in LLVM
+
+Register Based Byte Code Interpretor

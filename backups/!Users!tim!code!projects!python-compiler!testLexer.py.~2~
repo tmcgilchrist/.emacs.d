@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+import unittest
+import lex as Lexer
+import ply.lex as lex
+
+class TestLexer(unittest.TestCase):
+    """
+    Test Case for lex.py
+    """
+
+    def setUp(self):
+        self.lexer = Lexer.Lexer()
+        self.lexer.build()
+
+    def testIntPositive(self):
+        positive = ["1", "0", "-100000", "6600000", "+12"]
+
+        for i in positive:
+            self.lexer.setup(i)
+            s = self.lexer.next()
+            self.assertEqual(s.type, 'INTLITERAL', 
+                             "Input %s Output Type "%(i))
+
+    def testIntNegative(self):
+        negative = ["0.1", "-00.1", "+12.0", "+12398274.00"]
+
+        for i in negative:
+            self.lexer.setup(i)
+            s = self.lexer.next()
+            self.assertEqual(s, None, "Value is %s"%(i))
+
+    def testFloatPositive(self):
+        positive = ["1.0", "1.0", "1.2", "12.0"]
+        for i in positive:
+            self.lexer.setup(i)
+            s = self.lexer.next()
+            self.assertEqual(s.type, 'FLOATLITERAL', \
+                                 "Expecting float got %s type %s"%(s.value, s.type))
+ 
+#     def testFloatNegative(self):
+#         negative = [".", "0", "..0", "12", "0", "-."]
+#         for i in negative:
+#             self.lexer.setup(i) 
+#             s = self.lexer.next()
+#             self.assertEqual(s, lex.NoneType, "Expecting exception got %s type %s"%(s.value, s.type))
+    
+        
+if __name__ == '__main__':
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestLexer)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+        
+        
+

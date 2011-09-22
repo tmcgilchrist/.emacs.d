@@ -1,0 +1,10 @@
+-- Lexical analysis
+
+module Main where
+
+import Text.ParserCombinators.Parsec
+import Text.ParserCombinators.Parsec.Token as P
+import Text.ParserCombinators.Parsec.Language(haskellStyle)
+
+lexer :: TokenParser ()
+lexer = makeTokenParser (haskellDef { reservedOpNames = ["*","/","+","-"]})

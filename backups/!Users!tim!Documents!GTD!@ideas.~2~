@@ -1,0 +1,8 @@
+- build distributed application with Erlang/OTP. 
+  Something like a Foreign Exchange system, where you query for a conversion between 2 currencies and get back a result. 
+  Different ways of converting and gathering rates (internal/external systems). 
+  Fault tolerance so it runs across multiple systems and can handle one or more systems going down.
+
+- migrate wordpress blog onto virtual machine, either OpenBSD or Ubuntu.
+
+- install squid monitoring software onto OpenBSD.

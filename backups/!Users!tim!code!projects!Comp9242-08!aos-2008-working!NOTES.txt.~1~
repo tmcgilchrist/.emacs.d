@@ -1,0 +1,115 @@
+Thread Control Block (TCB) - contains the per thread virtual registers
+( Thread Control Registers) which contain the thread's private state
+User TCB (UTCB) - accessible by the thread
+Kernel TCB (KTCB) - accessible only by the kernel
+
+Each thread is associated with a page fault handler and an exception
+handler.
+
+On thread creation the first thing it does is execute a short receive
+operation waiting for a message from its pager. This message will
+provide the thread with an instruction and stack pointer, allowing it
+to start executing. The instruction pointer marks the beginning of the
+program text/executable region and the stack pointer marks the top of
+the stack.
+
+L4 does not enforce any specific layout of address spaces. The layout
+is generally determined by a combination of compiler and high level
+operating system service.
+
+Typical address space layout:
+------------------------------------------------------------------
+|XX| text  | data   | heap ->    |  empty          | <- stack    |
+------------------------------------------------------------------
+
+It is up to the thread to determine where to place its heap. this is a
+design issue, but typically serveral threads sharing the same address
+space will share a heap.
+
+Example program to show a thread running with a high stack pointer.
+
+Address spaces are created empty and need to be explicitly populated
+with page mappings. Normally Address Space is populated on demand by
+Pager, eg thread runs, faults on unmapped pages, pager creates
+mapping. Can also be done pro-actively, with the OS server pre-mapping
+contents of the executable.
+
+CacheControl() used to flush caches, design spec mentions
+understanding how this impacts the operation of the Pager. ? need to
+flush cache when new mappings or page protectino changed ?
+
+		__ Questions __
+How is the address space currently laid out? What are the restrictions?
+
+How do we setup a virtual address mapping?
+Assuming that the memory given to the AOS process is physical memory.
+Only dealing with mapping not granting.
+The MapControl() call modifies the Platform dependent mappings, either
+creating or destroying page mappings. Need examples of common
+operations: add a new page, modify the protection bits.
+
+fpage (flex-page) are a generalisation of a hardware page. Used to
+specify mapping objects. 
+
+The combination of MapControl() and flex-pages provide a machine
+independent  interface to the hardware page mapping. Similar to the
+pmap interface under *BSD.
+
+The frames from M1 represent physical memory. The design document for
+M1 mentions adding support for virtual addresses, swapping and
+multiple processes.
+
+
+Do we need to keep a per-thread mapping of the address space? which
+addresses are stack, heap and text.
+
+What allocates on the heap?
+Stack is a collection of frames 
+
+Thread Id uniquely identifies an Address Space but an AS can have
+multiple threads. Do these threads share the AS mappings? Yes? How do
+we store the physical->virtual mappings for each AS or thread?
+
+Research QNX implementation??
+
+
+	  __ Cache Notes __
+
+What sort of cache does this ARM have?
+Physical or Virtual?
+Associativity 2->N way
+
+Read section in 'Inside the Machine' on caches. Gives basic & easy to
+understand introduction to terms like N-way associativity.
+
+Kurt Schummel's book on Caches and Unix Systems.
+
+Research 
++ Cache (line) colouring problems and how they affect OS?
+
++ Cache coherance policies/approaches?
+   MESI - Modified Exclusive Shared Invalid
+
+          __Virtually Indexed Cache Issues__
+Software visible cache effects
+ + performance ->
+ + synonyms -> Multiple names for the same data.
+ + homonyms -> Same Virutal Address refers to different Physical
+ Addresses. Tag doesn't uniquely identify data.
+
+Homonym Prevention:
+ -> flush cache on context switch
+ -> force non-overlaping address space layout.
+ -> tag VA with address-space ID (ASID), makes VAs global (This approach
+ 	is used with MIPS and possibly ARM).
+ -> use physical tags
+
+Synonym Prevention:
+ -> Same data cached in several lines
+ -> on write, one synonym updated
+ -> read on other synonym returns old value
+ -> physical tags don't help
+ -> ASIDs don't help
+
+See MIPS R4K example? Similar issues on ARM11
+

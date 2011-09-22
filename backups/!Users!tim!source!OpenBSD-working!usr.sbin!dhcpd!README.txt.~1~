@@ -1,0 +1,23 @@
+        Notes for DHCPD.
+
+Purpose: DHCP implements Dynamic Host Configuration Protocol, RFC???
+
+         Overview of source code / files
+Headers:
+ dhcp.h - Protocol structures.
+ dhcpd.h - All Major pointers to data structures used in dhcpd(8), and method declarations for other source files.
+ dhctoken.h - Tokens for config file lexer and parser.
+ sync.h - dhcpd(8) synchronisation protocol, designed for real-time synchronisation between multiple machnies running the same config.
+ tree.h - Definitions for address trees
+
+Source:
+ dhcpd.c - Main method
+
+
+
+
+
+
+
+Questions:
+ + How will the sync protocol interact with reloading configuration files?

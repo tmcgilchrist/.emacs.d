@@ -1,0 +1,22 @@
+1) Custom map application for a particular location.
+eg University map with GPS locations for interesting locations.
+Add your own locations and share them.
+
+Using push notifications setup a bandwidth monitoring app.
+ -> Every day or so you get a background notification which updates the data used. Provide a percentage badge that shows how much you've used for the month.
+ -> provide historical graph of data usage
+ -> AppEngine backend to generate notifications. Manage user preferences
+    etc.
+
+2) Notes syncing app, via bluetooth or WiFi
+ Simple iphone app that contains a number of notes etc.
+ Mac app that combnie and syncs them
+
+3) JIRA webapp.
+ Customised views on JIRA.
+
+4) Tabbed Terminal for SSH.
+
+5) GUI tool for Mercurial
+
+6) Twitter client with push for iPhone

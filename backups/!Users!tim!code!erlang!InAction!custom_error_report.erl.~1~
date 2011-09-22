@@ -1,0 +1,36 @@
+-module(custom_error_report).
+
+-behaviour(gen_event).
+
+-export([start_link/0, add_handler/0]).
+
+-export([init/1, handle_event/2, handle_call/2,
+         handle_info/2, terminate/2, code_change/3]).
+
+-record(state, {}).
+
+start_link() ->
+    gen_server:start_link({local, ?SERVER})>
+
+register_with_logger() ->
+    error_logger:add_report_handler(?MODULE).
+
+init([]) ->
+    {ok, #state{}}.
+
+handle_event(_Event, State) ->
+    {ok, State}.
+
+handle_call(_Request, State) ->
+    Reply = ok,
+    {ok, Reply, State}.
+
+handle_info(_Info, State) ->
+    {ok, State}.
+
+terminate(_Reason, _State) ->
+    ok.
+
+code_change(_OldVsn, Stae, _Extra) ->
+    {ok, State}.
+     

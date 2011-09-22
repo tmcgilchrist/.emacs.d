@@ -1,0 +1,10 @@
+-module(router).
+-author('Tim McGilchrist').
+
+-compile(export_all).
+
+start() ->
+    spawn_link(fun() -> process() end).
+
+process() ->
+    _

@@ -1,0 +1,50 @@
+        __ Instruction Encoding __
+
+Based on the following requirements:
+ + 16 Hardware registers
+ + 16 bit native word size
+
+For this we need 2 different instruction formats.
+ 1. R-Type  | Opcode | RS | RT | RD     |
+ 2. I-Type  | Opcode | RS | RT | Offset |
+
+where: Opcode takes 4 bits
+       RS, RT, RD, Offset take 4 bits each
+
+       _R-Type_
+These operations are r-type.
+ + xor $rd, $rs, $rt     : Exclusive OR
+ + add $rd, $rs, $rt     : Unsigned Addition
+
+       _I-Type_
+These operations are i-type:
+ + sr $rs, imm           : Shift Right
+ + sl $rs, imm           : Shift Left
+ + lw $rs, offset($rt)   : Load Word 
+ + sw $rs, offset($rt)   : Store Word
+
+Initially I thought we needed a load immediate operation, but I think 
+we can cheat on this by using a precalculated value stored in a known
+address. This way we can reuse the "lw" instruction.
+
+        _Opcode values_
+_____________________
+|Operation | Opcode |
+---------------------
+| xor      |  0000  |
+| add      |  0001  |
+| sr       |  0010  |
+| sl       |  0011  |
+| lw       |  0100  |
+| sw       |  0101  |
+---------------------
+
+        _ Register values _
+These should simply be counting up to 16 in binary, so register 0 is 0000.
+As far as naming the registers I was going to use $r0 -> $r15, there doesn't
+seem to be much use in giving them special names like MIPS.
+
+NOTES:
+ Using this design, the encoding looks very similar to the MIPS encoding so we 
+can reuse a lot of the existing data path design from the text book and lectures.
+

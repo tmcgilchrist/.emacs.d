@@ -1,0 +1,6 @@
+{person, "joe", "armstrong",
+         [{occupation, programmer},
+          {favouriteLanguage, erlang}]}
+
+{cat, {name, "zorro"},
+      {owner, "joe"}}

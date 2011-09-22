@@ -1,0 +1,38 @@
+-- Compile: ghc --make ring.hs
+-- Execute: ./ring <Processes> <Messages>
+import Control.Monad
+import Control.Concurrent
+import System.Environment
+import System.CPUTime
+
+fork_ring_elem prev_mvar _ = do
+               next_mvar <- newEmptyMVar
+               forkIO (ring_elem prev_mvar next_mvar)
+               return next_mvar
+
+ring_elem :: MVar Int -> MVar Int -> IO ()
+ring_elem prev_mv next_mv = run
+          where run = do
+                token <- takeMVar prev_mv
+                putMVar next_mv (token -1)
+                when ( token > 0) run
+
+first_ring_elem :: MVar Int -> MVar Int -> IO ()
+first_ring_elem prev_mv next_mv = run
+           where run = do
+                 token <- takeMVar prev_mv
+                 putMVar next_mv (token -1)
+                 putStrLn "."
+                 when (token > 0) run
+
+main = do
+     (procsArg:roundsArg:_) <- getArgs
+     first_mvar <- newMVar ((read procsArg) * (read roundsArg))
+     t1 <- getCPUTime
+     last_mvar <- foldM fork_ring_elem first_mvar [2..(read procsArg)]
+     t2 <- getCPUTime
+     putStrLn ("forked processrs in " ++ (show (t2 -t1)) ++ " ps")
+     first_ring_elem last_mvar first_mvar
+     t3 <- getCPUTime
+     putStrLn "\n**finished***"
+     putStrLn ("total time: " ++ (show (t3 - t1)) ++ " ps")

@@ -1,0 +1,41 @@
+-- Layout of final binary
+-- Setup initial static values at the beginning of binary.
+--       + constants
+--       + plaintext string
+--       + plaintext length
+--       + space for cyphertext (at end of binary)
+--       + lookup table
+
+Grammar:
+
+program -> block
+block -> text-block | code-block
+text-block -> (text-stmt)*
+text-stmt -> hex-symbol (":" [A-Z])?
+          | string-symbol (":" [A-Z])?
+
+code-block -> (asm-stmt)*
+
+asm-stm -> "xor" reg "," reg "," reg                    -- Exclusive OR
+         | "add" reg "," reg "," reg                    -- Unsigned Addition
+         | "bne" reg "," reg "," hex-symbol             -- Branch If Not Equal
+         | "lw" reg "," hex-symbol "(" reg ")"          -- Load Word 
+         | "sw" reg "," hex-symbol "(" reg ")"          -- Store Word
+
+hex-symbol -> 0x([0-F]4)           -- "0x" followed by 1 - 4 Hex digits.
+reg -> $r[0-15]
+string-symbol -> any printable ASCII character
+
+Syntax:
+
+.text sections - places text in final binary at this location. 
+                 (Introduces constant variables)
+.code - places final code at this location.
+
+check source registers aren't the same
+check variable constants are defined in a code block
+transform string constants to correct representation
+
+Output: String of Hex values.
+
+Swithc

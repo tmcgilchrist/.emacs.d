@@ -1,0 +1,20 @@
+        Routing Rule implementation of Volume Value Threshold
+Covers 3 classes.
+ValueThresholdNotReachedOperator.java
+ValueVolumeThresholdConstants.java
+VolumeThresholdNotReachedOperator.java
+
+ValueThresholdNotReachedOperator.java
+- add Java 5 typed declarations for all collections.
+
+ValueVolumeThresholdConstants.java
+VolumeThresholdNotReachedOperator.java
+
+
+Performance Opportunity in caching the HashMap created in evaluate().
+
+Loading the SettlementDayHandler configuration from XML for every invocation of this class will cause performance issues. Why is this class being used in the first place? Why can't this instance of SettmentDayHandler be cached as a static on the class?
+
+
+
+XCT-1621 RMA

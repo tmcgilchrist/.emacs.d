@@ -1,0 +1,15 @@
+# Read file
+# break into tokens
+# loop throught tokens
+# lookup token and increment frequency
+# if not found add new token and set frequency to 1
+
+file = File.open('', 'rb')
+contents = file.read
+
+class Parser < Parslet::Parser
+
+  rule(:space)  { match['\s.,;:'].repeat(1) }
+  rule(:space?) { space.maybe }
+
+  rule(:word)   { match['A-Za-z'].repeat(1) >> space? }

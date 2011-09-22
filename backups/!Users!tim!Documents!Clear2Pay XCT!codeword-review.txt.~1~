@@ -1,0 +1,42 @@
+CodeWordConstants.java
+ - WLI_MESSAGE_DOMAIN should use WorkListConstants from OPF
+ - DOMAIN and MESSAGE_DOMAIN define same value, just use DOMAIN and remove the other one.
+
+CodeWordConditionInfo.java
+ - addToCodeWordCheckInfoList() lazy initialization is unnecessary, just init the private list in the Constructor.
+ - similar comment for CodeWordEnrichmentInfo and CodeWordInfo.
+ - make codeWordConditionInfoList type safe using Java 5 style declaration.
+
+StandardCodeWord.java
+- codeWordInfoMap should use a thread safe version of HashMap, suggest ConcurrentHashMap with Java 5 typed declaration.
+- EXCEPTION_HANDLER general pattern is define this as protected.
+- line 144, is it necessary to add the order by to the query, it seems rather redundant.
+
+StandardCodeWordContext
+- getIssues there is a method on issues, toArray() which can replace the line
+  return (GenericIssue[]) issues.toArray(new GenericIssue[issues.size()]);
+
+StandardApprovalCodewordHandler
+- use a thread safe version of HashMap like ConcurrentHashMap and use a Java 5 style type declaration.
+- in configure() using map as element within the codeWordApprovalMap, use Java 5 type declaration and use ConcurrentHashMap.
+
+StandardEnrichPaymentTransactionHandler
+ - use thread safe version of HashMap
+ - make EXCEPTION_HANDLER protected.
+ - processCodeWord() method is too complicated and contains 13 levels of nesting. Please break it up into smaller methods and consider using a more efficient data structure to replace the for loops with a Map lookup.
+
+StandardInformationalWorkListItemHandler
+ - use thread safe version of HashMap
+ - make EXCEPTION_HANDLER protected.
+
+General:
+ - Noticed that "-Do Nothing" is used in a number of Javadoc comments on constructors, it really isn't necessary.
+
+
+
+
+Questions:
+- using Java 5 type safe collections for XCT code?
+- what about Java 5 style for loops?
+- annotating methods that are implementing or overriding super class
+- protecting configure methods with a private synchronised block? See CalculateTransactionSettlementDayHandler for an example.

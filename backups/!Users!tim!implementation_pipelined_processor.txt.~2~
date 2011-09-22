@@ -1,0 +1,116 @@
+    General Pipeline Design
+
+The design of our pipelined processor started really started in
+Part 1 of the project. We made some important design decisions in
+our ISA which were aimed at simplifying the pipelining of our
+processor. First we removed software branching from our design by
+unrolling loops within our code and implementing a hardware looping
+operation. We also used a load immediate instruction over the other
+possibilities available, which should remove some pipeline hazards.
+
+For our pipelined implementation we decided to stick with the 5
+stage pipeline as present in the MIPS CPU. 
+ 
+This gives us the following stages:
+    - IF -> Instruction Fetch from Instruction Memory
+    - ID -> Instruction Decode / Register Read
+    - EX -> Execute the operation
+    - MEM -> Data Memory access
+    - WB -> Write Back results to Register file
+
+#include <picture_pipelined>
+
+Next we analysised our code from Part 1 and identified the potential
+pipeline hazards present. We managed to avoid a whole class of
+hazards, control hazards, by using a hardware branching, which left
+us with only data hazards to find. 
+
+Within our code, we identified 5 unique types of data hazard. Each of these types is presented below:
+
+1. 
+ldi $r1, (0x01)
+ldi $r2, (0x00)
+add $r0, $r0, $r1
+
+The hazard occurs between the first instruction and the third instruction. The immediate value being loaded into r1, is reused by the add instruction before the original ldi instruction has had time to write it to the register file (WB stage). This particular hazard can be easily detected and solved by Data Forwarding. MEM/WB.RegisterRd => ID/EX.Register.Rt
+
+2. 
+add $r0, $r0, $r1
+ldr $r3, $r0
+
+The hazard in this sequence of instructions is between the destination register (r0) of the add instruction and the source register of the ldr instruction. In the pipeline this hazard can be solved by forwarding the EX/MEM stage register RD to the input of the ID/EX stage register RS. EX/MEM.RegisterRd => ID/EX.RegisterRs
+
+3.
+ldi $r4, (0x00)
+ldr $r5, $r4
+
+The hazard here occurs because the immediate value loaded into $r4 is being used as the input to the ldr instruction. Because the immediate value is encoded into the ldi instruction, it's value is available immediately after decoding. Resolving this hazards requires forwarding EX/MEM.Immediate => ID/EX.Register.Rs. This is slightly different to the other data hazards because the immediate value is passed down a different bus to register values.
+
+4. 
+add $r3, $r3, $r6
+str $r0, $r3
+
+The hazard here occurs because the input to str, $r3, is the destination register for the previous add instruction. Again this hazard can be dealt with by forwarding the EX/MEM stage register Rd to the stage register ID/EX Rt of the next instruction.
+
+5.
+ldr $r5, $r4
+xor $r3, $r3, $r5
+
+This hazard is between the $r5 destination register of ldr and the input register $r5 for the following xor. This hazard is slightly different to the previous hazards because it cannot be solved via data forwarding within our design. The final result of the ldr instruction won't be known until after the MEM stage of our pipeline. And if the xor instruction follows directly behind, it will need this output as input to the ID/EX stage register. This can be clearly show when you draw a diagram of the pipeline stages.
+
+1     IF  ID  EX  ME  WB
+2         IF  ID  EX  ME  WB
+3             IF  ID  EX  ME  WB
+
+If the ldr instruction is in line 1, when it gets to the end of ME stage, to allow the xor to follow directly, it would need to forward the data backwards to the start of the EX stage. This isn't possible, without placing a bubble in the pipeline and shifting the xor instruction into line 3, where you can forward the output of ME into the input of EX.
+
+   Handling Data Hazards.
+
+From looking at our 5 data hazards, the first 4 hazards can be handled via data forwarding as show for each instance. The final hazard requires a pipeline stall of 1 cycle, which transforms it into a different data hazard that is handled via the forwarding outlined for hazard 1.
+
+             __Pipeline Design__
+- changes required to single cycle design
+
+#include diagram of single cycle 
+
+There are a number of changes required to convert our initial single cycle design into a pipelined processor. The most obvious is the addition of stage registers to split the processor into 5 stages. Other changes included adding 2 new logic components in the 'Hazard Detection' unit and the 'Data Forwarding' unit, and modifying the existing 'Control' unit so it supported a pipelined design.
+
+- breaking up pipeline
+
+Started by looking at the timings of the major components within out single cycle processor, to check that our 5 stage pipeline would be balanced.
+Component Timings:
+ - PC 0.5 ns
+ - Instruction Memory 2 ns
+ - Control Unit 1.5 ns
+ - Register File 1.5 ns
+ - ALU 1.5 ns
+ - Data Memory 2.3 ns
+ - Write Data 2.3 ns
+
+Diagram of stages
+
+With this split of the major components we get an estimated clock cycle of 2.5 ns.
+
+- adding stage registers
+
+Stage registers were added between each of the 5 stages. The contents of each stage register differered depending on what register or immediate values are being passed between the stages, and what control signals need to be propagated to a particular stage. Since the Control Unit is placed in Stage 2, all the Control Signals need to be fed into the stages after Stage 2.
+
+      - Which control signals?
+
+Each stage register adds an extra 0.25ns to the cycle time.
+
+- design control unit
+
+The 'Control' Unit for the pipelined processor is very similar to that in the single cycle processor, the only difference being that the output signals of the 'Control' unit are buffered in each of the stage registers after Stage 2.
+
+- design hazard detection unit
+
+The Hazard Detection unit is required to detect the situation where an instruction tries to read a register following a load instruction that writes to that same register. This situation was identified in Hazard 5, of our initial hazaard analysis.
+
+ - How does this work?
+
+- design data fowarding unit
+
+              __Simulation__
+- clock cycle estimate 
+- 

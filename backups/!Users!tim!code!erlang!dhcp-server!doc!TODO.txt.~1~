@@ -1,0 +1,4 @@
+- Setup udp client capable of sending out DHCP packets.
+- Log examples of real DHCP traffic.
+- Capture a DHCP request / response session using Wireshark
+- setup eUnit for this project.

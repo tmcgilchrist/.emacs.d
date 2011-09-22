@@ -1,0 +1,90 @@
+-- key is store in data memeory locations 0 - 7
+-- characters are store in data memory locations 8+
+
+1:	ldi	$r0, (0x07)		; location of the first character - 1
+2:	ldi	$r1, (0x01)		; load one to be used for incrementing
+3:	ldi	$r2, (0x00)		; load constant C
+
+--loops starts here
+
+4:	add	$r0, $r0, $r1           ; Increment input location
+5:	ldr	$r3, $r0		; Load input
+
+
+6:      ldi	$r4, (0x00)		; Load start address of encryption key
+7:	ldr	$r5, $r4		; Load encrytion key
+
+
+8:      xor	$r3, $r3, $r5		; $r3 = A
+9:	add	$r6, $r3, $r2           ; $r6 = A + C
+10:	lsl	$r6, $r6		; $r6 = mod16(A + C) & 0000 
+11:	lsr	$r3, $r3		; $r3 = 0000 & Ah
+12:	add	$r3, $r3, $r6		; Concatenation
+
+13:     add	$r4, $r4, $r1		; Increment to next key part
+14:	ldr	$r5, $r4		; Load encrytion key
+
+
+--2
+	xor	$r3, $r3, $r5		; $r3 = A
+	add	$r6, $r3, $r2           ; $r6 = A + C
+	lsl	$r6, $r6		; $r6 = mod16(A + C) & 0000 
+	lsr	$r3, $r3		; $r3 = 0000 & Ah
+	add	$r3, $r3, $r6		; Concatenation
+
+     	add	$r4, $r4, $r1		; Increment to next key part
+	ldr	$r5, $r4		; Load encrytion key
+--3
+	xor	$r3, $r3, $r5		; $r3 = A
+	add	$r6, $r3, $r2           ; $r6 = A + C
+	lsl	$r6, $r6		; $r6 = mod16(A + C) & 0000 
+	lsr	$r3, $r3		; $r3 = 0000 & Ah
+	add	$r3, $r3, $r6		; Concatenation
+
+     	add	$r4, $r4, $r1		; Increment to next key part
+	ldr	$r5, $r4		; Load encrytion key
+--4
+	xor	$r3, $r3, $r5		; $r3 = A
+	add	$r6, $r3, $r2           ; $r6 = A + C
+	lsl	$r6, $r6		; $r6 = mod16(A + C) & 0000 
+	lsr	$r3, $r3		; $r3 = 0000 & Ah
+	add	$r3, $r3, $r6		; Concatenation
+
+     	add	$r4, $r4, $r1		; Increment to next key part
+	ldr	$r5, $r4		; Load encrytion key
+--5
+	xor	$r3, $r3, $r5		; $r3 = A
+	add	$r6, $r3, $r2           ; $r6 = A + C
+	lsl	$r6, $r6		; $r6 = mod16(A + C) & 0000 
+	lsr	$r3, $r3		; $r3 = 0000 & Ah
+	add	$r3, $r3, $r6		; Concatenation
+
+     	add	$r4, $r4, $r1		; Increment to next key part
+	ldr	$r5, $r4		; Load encrytion key
+--6
+	xor	$r3, $r3, $r5		; $r3 = A
+	add	$r6, $r3, $r2           ; $r6 = A + C
+	lsl	$r6, $r6		; $r6 = mod16(A + C) & 0000 
+	lsr	$r3, $r3		; $r3 = 0000 & Ah
+	add	$r3, $r3, $r6		; Concatenation
+
+     	add	$r4, $r4, $r1		; Increment to next key part
+	ldr	$r5, $r4		; Load encrytion key
+--7
+	xor	$r3, $r3, $r5		; $r3 = A
+	add	$r6, $r3, $r2           ; $r6 = A + C
+	lsl	$r6, $r6		; $r6 = mod16(A + C) & 0000 
+	lsr	$r3, $r3		; $r3 = 0000 & Ah
+	add	$r3, $r3, $r6		; Concatenation
+
+     	add	$r4, $r4, $r1		; Increment to next key part
+	ldr	$r5, $r4		; Load encrytion key
+--8
+	xor	$r3, $r3, $r5		; $r3 = A
+	add	$r6, $r3, $r2           ; $r6 = A + C
+	lsl	$r6, $r6		; $r6 = mod16(A + C) & 0000 
+	lsr	$r3, $r3		; $r3 = 0000 & Ah
+	add	$r3, $r3, $r6		; Concatenatio
+
+
+61:	str	$r0, $r3		; Will reset PC to 0x01

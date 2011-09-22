@@ -1,0 +1,18 @@
+        Stories
+
+MARQ-103 - Curriculum Mappings per Degree, Program, Major.
+           Improvements
+
+MARQ-242 - Resolve handling units owned by 2 or more departments. Taking the first department mentioned.
+
+MARQ-218 - Submit a unit guide for approval.
+
+MARQ-213 - Marketing providing styling for the Unit Guide PDFs. MARQ-317 next iteration will give an opportunity to see this styling.
+
+MARQ-181 - Print friendly view of Curriculum Mapping.
+
+
+
+         BUGS
+MARQ-312 - Missing Cancel button when Editing Graduate Capabilities
+MARQ-316 - Missing Cancel button on Merge Assessment Task Types page.

@@ -1,0 +1,60 @@
+___Haskell Mode___
+C-c C-l load the current file into ghci
+
+___Prolog mode___
+
+C-c C-b        Consult the current buffer.
+C-c Ret        Start prolog runtime.
+
+___C mode___
+
+M-x compile    Compile using make.
+C-c C-e        ''
+C-x `          Visit the next error raised by compile.
+C-u C-x C-`    Go back to the start of the errors.
+
+___Erlang mode___
+
+C-c C-k (erlang-compile) - Compiles the Erlang module in the current buffer. 
+
+C-x` (erlang-next-error) - Move the point on to the next error.
+
+C-c C-a (erlang-align-arrows) - Line up arrows 
+
+___ Misc ___
+
+Set background transparent
+M-x ns-set-background-alpha 0.8
+
+Quit partially entered commands
+C-g
+
+___SLIME Lisp Mode___
+
+C-c C-k (slime-compile-and-load-file) - Compile and load the current buffer's source file. 
+C-c M-k (slime-compile-file) - Compile (but don't load) the current buffer's source file. 
+C-c C-c (slime-compile-defun) - Compile the top-level form at point.
+
+___Ruby Mode___
+M-x describe-mode
+C-c C-s (run-ruby) - Start ruby runtime.
+
+__Python Mode__
+C-c C-l
+
+__ETAGS __
+M-.       goes to the symbol definition
+M-0 M-.   goes to the next matching definition
+M-*       return to your starting point
+M-x tags-search <type your regexp>       initiate a search
+M-,                                      go to the next match
+
+__ Switch Window
+C-x o Select another window (other-window). That is o, not zero.
+C-x 2 Split window vertically
+C-x 3 Split window horizontally
+
+
+__ TODO
+- find out how to lookup the documentation for an erlang lib function.
+- align arrows within a case statement?

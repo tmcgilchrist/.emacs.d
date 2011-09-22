@@ -1,0 +1,3 @@
+(defpackage :net.homeunix.gothmog.spam
+  (:use :common-lisp :net.homeunix.gothmog.pathnames))
+

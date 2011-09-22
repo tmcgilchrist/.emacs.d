@@ -1,0 +1,23 @@
+#define LITTLE_ENDIAN 0
+#define BIG_ENDIAN    1
+
+int machineEndianness()
+{
+   short s = 0x0102;
+   char *p = (char *) &s;
+   if (p[0] == 0x02) // Lowest address contains the least significant byte
+      return LITTLE_ENDIAN;
+   else
+      return BIG_ENDIAN;
+}
+
+int main()
+{
+	int i;
+	i = machineEndianness();
+	if (i == LITTLE_ENDIAN)
+		printf("little endian\n");
+	else 
+		printf("big endian\n");
+	return 0;
+}

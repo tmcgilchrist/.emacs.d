@@ -1,0 +1,16 @@
+module Parser
+where
+
+import Text.ParserCombinators.Parsec
+import Text.ParserCombinators.Parsec.Expr
+
+expr = buildExpressionParser optable term
+optable = [ [ Postfix select ]
+          , [ Infix times AssocLeft ]
+          , [ Infix add AssocLeft ]
+          ]
+
+term      = natural <|> parens expr
+select    = brackets expr >>= \e -> return (`mod` e)
+times     = string "*" >> return (*)
+add       = string "+" >> return (+)

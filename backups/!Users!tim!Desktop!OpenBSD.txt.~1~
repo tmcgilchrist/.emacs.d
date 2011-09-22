@@ -1,0 +1,36 @@
+1. Configure and deploy Squid proxy
+    1.1 Basic Squid setup, manual proxy. (DONE)
+    1.2 Add AntiVirus scanning
+    1.3 Add monitoring software to check hit rate, mem usage etc.
+2. Update OpenBSD Release to Stable
+3. Configure and deploy DNS server for local network (DONE)
+4. Configure and deploy DHCP server (DONE)
+    4.1 Integrate DHCP with DNS
+    http://www.bsdguides.org/guides/openbsd/networking/dynamic_dns_dhcp.php
+    http://www.cameratim.com/computing/linux/using-bind-as-a-local-dns-server#integrating-dhcp-and-dns-servers
+    http://old.nabble.com/auto-update-named-via-dhcpd--td5331331.html
+
+5. Run Postfix mail server
+    5.1 SPAM and virus scanning.
+    5.2 Run webmail application.
+    5.3 Provide IMAP for remote useage.
+6. Setup wordpress blog using subdomain blog.hostname.com
+7. Setup virtual hosts on Apache, one for external use and one for internal use.
+
+Optional:
+1. USB Ethernet         $40
+2. Upgrade to 3Gb RAM.  $140
+3. Upgrade HD           $200
+
+    _DISABLE Sendmail_
+1. vi /etc/rc.conf
+
+# sendmail_flags="-L sm-mta -C/etc/mail/localhost.cf -bd -q30m" #comment out this line
+sendmail_flags=NO  # add this line to disable sendmail from starting at boot time
+
+2. crontab -e
+
+Look for the lines that look like this and remove them or comment them out with a#
+
+# sendmail clientmqueue runner
+# */30 * * * * /usr/sbin/sendmail -L sm-msp-queue -Ac -q # add a "#" to comment it out

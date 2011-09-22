@@ -1,0 +1,11 @@
+class DiceLexerSpecification < Dhaka::LexerSpecification
+
+  operators = {
+    '(' => '\(',
+    ')' => '\)',
+    '+' => '',
+    '-' => '-',
+    '/' => '\/',
+    '*' => '\*',
+    'd' => 'd'
+  }

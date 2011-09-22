@@ -1,0 +1,11 @@
+class Link < ActiveRecord::Base
+
+  validates :original_url, :presence => true
+  
+  before_save :convert_url
+
+  def convert_url
+    # Convert url to hash key
+    self.short_url = self.original_url.to_i(36)
+  end
+end

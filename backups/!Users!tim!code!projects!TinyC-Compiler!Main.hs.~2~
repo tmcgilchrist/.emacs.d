@@ -1,0 +1,67 @@
+module Main where
+
+import System.Environment
+import Text.ParserCombinators.Parsec hiding (spaces)
+
+data CVal = Number Integer
+          | Identifier Char
+          | Operator String
+          | Term CVal
+          | IfStmt String CVal CVal
+          | IfElseStmt String CVal CVal String CVal
+          deriving (Show)
+
+spaces :: Parser ()
+spaces = skipMany1 space
+
+parseIdentifier :: Parser CVal
+parseIdentifier = do x <- oneOf (['a','b'..'z'])
+                     return $ Identifier x
+
+parseNumber :: Parser CVal
+parseNumber = do x <- many1 digit
+                 (return . Number . read) x
+
+parseTerm :: Parser CVal
+parseTerm = parseIdentifier
+          <|> parseNumber
+          <|> parseParenExpr
+          <?> "Expecting <term> ::= <id> | <int> | <paren_expr>"
+
+-- Requires Left Factoring
+
+parseParenExpr :: Parser CVal
+parseParenExpr = do char '('
+                    x <- parseExpr
+                    char ')'
+                    return $ x
+
+parseExpr :: Parser CVal
+parseExpr = parseIdentifier
+          <|> parseNumber
+          <|> parseParenExpr
+          <|> parseTerm
+
+parseIfStmt :: Parser CVal
+parseIfStmt = do string "if"
+                 y <- parseParenExpr
+                 z <- parseExpr
+                 parseElse y z <|> (return $ IfStmt "if" y z)
+
+parseElse :: CVal -> CVal -> Parser CVal
+parseElse a b = do
+                try $ string "else"
+                y <- parseExpr
+                return $ IfElseStmt "if" a b "else" y
+
+parseStatement :: Parser CVal
+parseStatement = do parseIfStmt
+
+readExpr :: String -> String
+readExpr input = case parse parseStatement "tinyC" input of
+    Left err -> "No match: " ++ show err
+    Right val -> "Found value: " ++ show val
+
+main :: IO ()
+main = do args <- getArgs
+          putStrLn( readExpr (args !! 0))

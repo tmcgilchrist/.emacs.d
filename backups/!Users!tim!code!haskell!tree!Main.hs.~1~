@@ -1,0 +1,11 @@
+module Main where
+import Tree
+import Flatten
+
+t1 = Fork 2 (Fork 1 EmptyTree EmptyTree)
+            (Fork 3 EmptyTree EmptyTree)
+
+main = print (show t1) >>
+       print (show (weight t1)) >>
+       print (show (height t1)) >>
+       print (show (flatten t1))

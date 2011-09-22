@@ -1,0 +1,10 @@
+package qotd
+
+class QuoteService {
+
+    boolean transactional = true
+
+    def serviceMethod() {
+
+    }
+}

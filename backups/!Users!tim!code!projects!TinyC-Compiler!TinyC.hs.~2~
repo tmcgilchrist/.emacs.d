@@ -1,0 +1,38 @@
+module TinyC where
+
+import Text.ParserCombinators.Parsec hiding (spaces)
+
+data CVal = Number Integer
+          | Identifier Char
+          | Term CVal
+          deriving (Show)
+--instance Show CVal where show = showVal
+
+showVal :: CVal -> String
+showVal (Number contents) = show contents
+showVal (Identifier contents) = show contents
+showVal (Term contents) = show contents
+
+spaces :: Parser ()
+spaces = skipMany space
+
+parseIdentifier :: Parser CVal
+parseIdentifier = do x <- oneOf (['a','b'..'z'])
+                     return $ Identifier x
+
+parseNumber :: Parser CVal
+parseNumber = do spaces
+                 x <- many1 digit
+                 spaces
+                 (return . Number . read) x
+
+parseTerm :: Parser CVal
+parseTerm = do spaces
+               x <- parseIdentifier <|> parseNumber
+               (return . Term) x
+
+readExpr :: String -> String
+readExpr input = case parse parseTerm "TinyC" input of
+    Left err -> "No match: " ++ show err
+    Right val -> show val
+

@@ -1,0 +1,13 @@
+module Main where
+
+import Text.ParsecCombinators.Parsec hiding (spaces)
+
+data CVal = Number Integer
+          | Identifier Char
+          | Operator String
+
+identifier :: Parser CVal
+identifier = do
+             x <- oneOf (['a','b'..'z'])
+             return $ Identifier x
+

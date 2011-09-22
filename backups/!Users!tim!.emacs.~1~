@@ -1,0 +1,16 @@
+;;;; Tim McGilchrist's emacs initialisation 
+
+;; Enable a backtrace when problems occur
+(setq debug-on-error t)
+
+;; Load paths
+(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp-personal"))
+
+;; Personal customisations
+(require 'tsm-generic)
+(require 'tsm-backup)
+(require 'tsm-haskell)
+(require 'tsm-misc)
+;; Many more to come

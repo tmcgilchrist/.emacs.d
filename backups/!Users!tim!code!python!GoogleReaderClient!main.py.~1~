@@ -1,0 +1,35 @@
+import urllib
+import urllib2
+import re
+
+login = 'someone@gmail.com'
+password = '*****'
+source = 'gPowered' # ???
+
+google_url = 'http://www.google.com'
+reader_url = google_url + '/reader'  
+login_url = 'https://www.google.com/accounts/ClientLogin'  
+token_url = reader_url + '/api/0/token'  
+subscription_list_url = reader_url + '/api/0/subscription/list'  
+reading_url = reader_url + '/atom/user/-/state/com.google/reading-list'  
+read_items_url = reader_url + '/atom/user/-/state/com.google/read'  
+reading_tag_url = reader_url + '/atom/user/-/label/%s'  
+starred_url = reader_url + '/atom/user/-/state/com.google/starred'  
+subscription_url = reader_url + '/api/0/subscription/edit'  
+get_feed_url = reader_url + '/atom/feed/'  
+
+#login / get SED
+def get_SID():
+    header = {'User-agent' : source}
+    post_data = urllib.urlencode( {'Email':login, 'Password':password,
+                                   'service':'reader': 'source':source,
+                                   'continue':google_url, })
+    request = urllib2:Request(login_url< post_data, header)
+
+    try :
+        f = urllib2.urlopen(request)
+        result = f.read()
+    except:
+        print 'Error logging in'
+
+    return re.search('SID={\S*}', result).group(1)

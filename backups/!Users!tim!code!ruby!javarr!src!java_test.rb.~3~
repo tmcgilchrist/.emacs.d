@@ -1,0 +1,83 @@
+#!/usr/bin/env ruby -wKU
+
+require "test/unit"
+require "java_parser"
+
+class TestJavaParser < Test::Unit::TestCase
+
+  def setup
+    @parser = JavaParser.new
+  end
+
+  def test_keywords
+    # boolean break continue else for float if int return void while
+    assert_equal(Token.new(TokenType::BOOLEAN,  "boolean", 0),
+                 @parser.parse("boolean"))
+    assert_equal(Token.new(TokenType::BREAK,  "break", 0),
+                 @parser.parse("break"))
+    assert_equal(Token.new(TokenType::BOOLEAN,  "b", 0),
+                 @parser.parse("boolean"))
+    assert_equal(Token.new(TokenType::BOOLEAN,  "boolean", 0),
+                 @parser.parse("boolean"))
+    assert_equal(Token.new(TokenType::BOOLEAN,  "boolean", 0),
+                 @parser.parse("boolean"))
+
+  end
+
+  def test_string_literal
+    assert_equal(Token.new(TokenType::STRINGLITERAL,  "\"True\"", 0),
+                 @parser.parse("\"True\""))
+    # TODO Missing support for escape characters in strings.
+  end
+
+  def test_bool_literal
+    assert_equal(Token.new(TokenType::BOOLEANLITERAL,  "true", 0),
+                 @parser.parse("true"))
+    assert_equal(Token.new(TokenType::BOOLEANLITERAL,  "false", 0),
+                 @parser.parse("false"))
+
+  end
+
+  def test_bool_parse_errors
+    assert_equal(Token.new(TokenType::STRINGLITERAL,  "\"False\"", 0),
+                 @parser.parse("\"False\""))
+    assert_equal(Token.new(TokenType::STRINGLITERAL,  "\"FALSE\"", 0),
+                 @parser.parse("\"FALSE\""))
+    assert_equal(Token.new(TokenType::STRINGLITERAL,  "\"fALSE\"", 0),
+                 @parser.parse("\"fALSE\""))
+    assert_equal(Token.new(TokenType::STRINGLITERAL,  "\"True\"", 0),
+                 @parser.parse("\"True\""))
+    assert_equal(Token.new(TokenType::STRINGLITERAL,  "\"TRUE\"", 0),
+                 @parser.parse("\"TRUE\""))
+    assert_equal(Token.new(TokenType::STRINGLITERAL,  "\"tRUE\"", 0),
+                 @parser.parse("\"tRUE\""))
+  end
+
+  def test_int_literal
+    assert_equal(Token.new(TokenType::INTLITERAL,  "1", 0),
+                 @parser.parse("1"))
+    assert_equal(Token.new(TokenType::INTLITERAL,  "100000000000", 0),
+                 @parser.parse("100000000000"))
+  end
+
+  def test_single_line_comment
+    expected = Token.new(TokenType::COMMENT,  "//     \n", 0)
+    actual = @parser.parse("//     \n")
+    assert_equal(expected, actual)
+  end
+
+  def test_multiline_comment
+    assert_equal(Token.new(TokenType::COMMENT, "/*  */", 0), 
+                 @parser.parse("/*  */"))
+    assert_equal(Token.new(TokenType::COMMENT, "/*** */", 0), 
+                 @parser.parse("/*** */"))
+    assert_equal(Token.new(TokenType::COMMENT, "/*** \n */", 0), 
+                 @parser.parse("/*** \n */"))
+  end
+
+  def test_comment_parse_errors
+    assert_raise(RuntimeError) { @parser.parse("/ \n") }
+    assert_raise(RuntimeError) { @parser.parse("/   \n") }
+    assert_raise(RuntimeError) { @parser.parse("/*   \n") }
+  end
+end

@@ -1,0 +1,35 @@
+- improve formatting of overall document.
+- create a list of projects that I've woked on, so I can customise project list based on position.
+- work on a portfolio of projects to demonstrate skills on major skills on resume. Provide source access on homepage.
+    + L4 OS
+    + Erlang OTP
+    + Erlang / MochiWeb website. Reddit, HackerNews clone.
+    + Haskell compiler for simple subset of C, using Parsec and XUnit tests.
+    + Java ??
+- articles on tech mentioned on resume. 
+
+
+Major Projects:
+
+- Developer on BPH, channel application for NAB.
+- Developer on BPH, channel application for Standard Bank SA
+- Developer on Core R&D group building generic payments services. 
+- SEPA / SDD payments processing for PBS. Service provider for Denmark allowing local banks to participate in SEPA without setting up specific systems. ie continue using the local Danish formats.
+  - Short time as Team Lead while regular TL was out of the country.
+    Responsible for Reporting Team/Project progress oto Management, co-ordinating product releases to the customer, supervising development team & QA team, working with remote stakeholders (France & Belgium) 
+
+- SEPA / SDD / SCT / Internation Payments System for Credit Agircole.
+  - Snr Developer: design & implementation of new functionality, mentoring junior team members, defect/bug triage. 
+  - Two periods as Team Lead.
+    Responsible for Reporting Team/Project progress oto Management, co-ordinating product releases to the customer, supervising development team & QA team, working with remote stakeholders (France & Belgium) 
+
+- R&D group working on the International Payments System for Credit Agricole & Santander.
+  - permanent Team Lead responsibilities:
+    + co-ordinating releases to internal & external customers
+    + supervising developers both locally & remotely
+    + supervising & co-ordinating QA team & testing cycles.
+    + reporting & project planning for future versions.
+
+
+Questions:
+- how would you describe the NAB application?

@@ -1,0 +1,70 @@
+        __ Instruction Encoding __
+
+Instruction Formats (16 bit)
+ 1. R-Type  | Opcode | RS | RT | RD | empty      |
+ 2. I-Type  | Opcode | RD |    Immediate | empty |
+
+where: 
+       Opcode takes 4 bits
+       RS, RT, RD take 3 bits
+       Immediate takes 8 bits
+
+This leaves some empty space at the end of each instruction encoding, 3 bits for an R-Type and 1 bit for an I-Type.
+
+       _R-Type_
+These operations are r-type:
+ + xor $rd, $rs, $rt     : Exclusive OR
+ + add $rd, $rs, $rt	 : Unsigned Addition
+ + ldr $rs, $rt	         : Load Register without XOR
+ + ldx $rs, $rt	         : Load Register with XOR check for 
+       	    		   end or input
+ + str $rs, $rt		 : Store Register rs into address rt,
+       	    	      	   and reset pc
+ + lsr $rs	         : Logical Shift Right by 4 bits
+ + lsl $rs	         : Logical Shift Left by 4 bits
+
+       _I-Type_
+These operations are i-type:
+ + li  $rd, (Immediate)  : Load Immediate
+
+        _Opcode values_
+_____________________
+|Operation | Opcode |
+---------------------
+| xor      |  0000  |
+| add      |  0001  |
+| lsr      |  0010  |
+| lsl      |  0011  |
+| ldr      |  0100  |
+| ldx      |  0101  |
+| str      |  0110  |
+| li       |  1000  |
+---------------------
+Note: the most significant bit will determine if it's R or I type.
+
+        _ Register values _
+We will have certain "constants" hardwired into our ALU for common operations.
+We will use $r0->$r5 in our code (we only need 4 registers atm) and have the
+remaining registers named $c0 and $c1 where $c0 gives access to a hardwired
+constant "c" to our ALU and $c1 gives a hardwires "0x02" to our ALU for incrementing
+our memory pointer using the store operation.
+
+I think we agreed on rejecting the idea of hardcoding registers to particular values last meetup. So now we have total of 8 general purpose registers.
+
+_______________________
+| Register | Encoding |
+-----------------------
+| r0      |  0000    |
+| r1      |  0000    |
+| r2      |  0000    |
+| r3      |  0000    |
+| r4      |  0000    |
+| r5      |  0000    |
+| r6      |  0000    |
+| r7      |  0000    |
+----------------------
+
+        _Immediate Values _
+
+- Specified as hex values min 0x00, max 0xff
+- Takes up 8 bits of instruction word.

@@ -1,0 +1,15 @@
+        Rough Order of Priority
+- setup a basic link model in db
+- add LinksController to create a new link
+      -> add show a link
+      -> add index action to show all links
+      -> validate original_url is a valid url?
+
+
+      Pico MVP (Minimum Viable Product)
+- add links that are shortened
+- user account to collect links
+- accept short link and redirect to original
+- link click through stats
+- original URL popularity
+- add ajax to main screen to copy URL into clipboard

@@ -1,0 +1,14 @@
+# Remove the spec:rcov task as rcov will not work for ruby 1.9. Instead we
+# use simplecov (see below) to check coverage.
+remove_task('spec:rcov')
+
+namespace :spec do
+
+  desc 'Run all specs with code coverage'
+  task :coverage => :environment do
+    FileUtils.rm_rf("#{Rails.root}/spec/coverage")
+    ENV['SPEC_WITH_COVERAGE'] = 'true'
+    Rake::Task['spec'].invoke
+  end
+
+end

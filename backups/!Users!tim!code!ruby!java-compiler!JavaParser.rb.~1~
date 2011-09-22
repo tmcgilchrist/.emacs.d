@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby -wKU
+
+require "strscan"
+
+class JavaParser
+
+  AST = Struct.new(:value)
+
+  def parse(input)
+    @input = String.Scanner.new(input)
+    parse_value.value
+  ensure
+    @input.eos? or error("Unexpected data")
+  end
+
+  private
+
+  def parse_value
+    trim_space
+    parse_comment or
+    error("Illegal Java value")
+  ensure
+    trim_space
+  end
+end

@@ -1,0 +1,15 @@
+require 'spec_helper'
+
+describe Link do
+  it 'should save given valid attributes' do
+    Link.create! :original_url => 'http://www.google.com'
+  end
+
+  it 'should require an original url'
+
+  it 'should produce a unique  short url'
+
+  it 'should not allow duplicate original urls'
+
+  it 'should map a short url to an original url'
+end

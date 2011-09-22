@@ -1,0 +1,29 @@
+-module(hasht).
+-export([new/0, loop/0, set/3, lookup/2]).
+
+new() -> spawn(?MODULE, loop, []).
+
+loop() ->
+    receive
+        M={Pid,set,K,V} ->
+            case get(K) of
+                undefined -> put(K,V),
+                             Pid ! {self(),ok,M},
+                             loop();
+                _ -> Pid ! {self(),already_defined,M},
+                           loop()
+            end;
+        M={Pid,lookup,K} -> Pid ! {self(),get(K),M},
+                            loop()
+    end.
+
+lookup(Hash,K) ->
+    Hash ! M={self(),lookup,K},
+    receive {Hash,Res,M} -> Res end.
+
+set(Hash,K,V) ->
+    Hash ! M={self(),set,K,V},
+    receive
+        {Hash,ok,M} -> ok;
+        {Hash,already_defined,M} -> {error,already_defined}
+    end.

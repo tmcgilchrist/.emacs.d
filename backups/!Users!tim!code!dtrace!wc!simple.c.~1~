@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <sys/sdt.h>
+
+/*
+ * simple example of defining sdt probes in a trivial program
+ * Sdt probes can often completely replace debug levels, optional
+ * log files, etc, in daemons... you can leverage the power of dtrace
+ * to make your server/application more readily debuggable.
+ * */
+
+int
+main(int argc, char *argv[])
+{
+    int i;
+    int characters, lines, words;
+    characters = lines = words = 0;
+
+
+    while (1) {
+
+            if ((i = getchar()) == EOF) {
+                        /*
+ *                          * here we specify the name of the module,
+ *                                                   * the name of the probe (modulo mapping
+ *                                                                            * '__' to '-') and pass in the parameter to be
+ *                                                                                                     * traced which in this case is the number of
+ *                                                                                                                              * lines seen so far.
+ *                                                                                                                                                       */
+                        DTRACE_PROBE1(simple, saw__line, lines);
+                        break;
+                }
+
+                characters++;
+
+                if (i == '\n') {
+                        lines++;
+                        DTRACE_PROBE1(simple, saw__line, lines);
+                        continue;
+                }
+
+                if (isblank(i)) /* eating white space */
+                        continue;
+
+                words++; /* in a word now */
+
+                while (1) {
+
+                        if ((i = getchar()) == EOF) {
+                                DTRACE_PROBE1(simple, saw__word, words);
+                                break;
+                        }
+
+                        characters++;
+
+                        if (i == '\n') { /* EOL? ends word implicitly */
+                                DTRACE_PROBE1(simple, saw__word, words);
+                                lines++;
+                                DTRACE_PROBE1(simple, saw__line, lines);
+                                break;
+                        }
+
+                        if (isblank(i)) { /* white space ends words too */
+                                DTRACE_PROBE1(simple, saw__word, words);
+                                break;
+                        }
+                }
+        }
+
+    printf("%8d %8d %8d\n", lines, words, characters);
+
+    exit(0);
+}

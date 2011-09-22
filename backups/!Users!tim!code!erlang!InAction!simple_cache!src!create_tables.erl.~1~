@@ -1,0 +1,13 @@
+-record(user, {
+          id,
+          name}).
+
+-record(project, {
+          title,
+          description
+          }).
+
+-record(contributer, {
+          user_id,
+          title
+          }).

@@ -1,0 +1,72 @@
+    General Pipeline Design
+
+The design of our pipelined processor started really started in
+Part 1 of the project. We made some important design decisions in
+our ISA which were aimed at simplifying the pipelining of our
+processor. First we removed software branching from our design by
+unrolling loops within our code and implementing a hardware looping
+operation. We also used a load immediate instruction over the other
+possibilities available, which should remove some pipeline hazards.
+
+For our pipelined implementation we decided to stick with the 5
+stage pipeline as present in the MIPS CPU. This gives us the following
+stages:
+    - IF -> Instruction Fetch from Instruction Memory
+    - ID -> Instruction Decode / Register Read
+    - EX -> Execute the operation
+    - MEM -> Data Memory access
+    - WB -> Write Back results to Register file
+
+#include <picture_pipelined>
+
+Next we analysised our code from Part 1 and identified the potential
+pipeline hazards present. We managed to avoid a whole class of
+hazards, control hazards, by using a hardware branching, which left
+us with only data hazards to find. Below is a subsection of our
+program that exhibts all the data hazards within our assembly
+program.
+
+1:    add $r0, $r0, $r1         
+2:    ldr $r3, $r0           ; H1     
+3:    li $r4, (0x00)              
+4:    ldr $r5, $r4           ; H2
+5:    nop                    ; H3
+6:    xor $r3, $r3, $r5           
+7:    add $r6, $r3, $r2      ; H4
+8:    lsl   $r6, $r6         ; H5
+9:    .....
+10:   str  $r0, $r3            
+11:   add $r0, $r0 $r1       ; H6
+
+Line 9 represents the gap where the other 7 sections of repeated
+code in our encryption code. Line 10 is the last line in our code
+and Line 11 is the first line of the next loop in our code, where
+we move onto the next character.
+
+Line 1/2 the result of the add operation is reused as the input of the load register instruction. 
+
+Line 3/4 the result of the load immediate instruction is reused as input to the load register instruction.
+
+Line 4/6 the result of the load register instruction is reused as
+input to xor. This sequence of instruction required a pipeline stall
+because the result of ldr wasn't know until the end of the MEM stage
+and the following instruction needs the input to the EX stage. If
+we place a noop into the pipeline after the ldr, the result is
+available via data forwarding at the correct time.
+
+Line 6/7 the output of the xor instruction is used as input to the add instruction. 
+
+Line 7/8 the output of add is input into lsl.
+
+Line 10/11 the result of the store instruction is used by the following add instruction. The result of the store is available after ID and needs to be forwarded to the input of the EX stage of the following instruction.
+
+We identified 6 separate hazards within this section of our code. One of them required a pipeline stall of 1 cycle. The others could be handled with data forwarding.
+
+The notations for the hazards is taken from the text book [1].
+
+H1: EX/MEM.RegisterRd = ID/EX.RegisterRs
+H2: EX/MEM.Immediate  = ID/EX.RegisterRs
+H3: MEM/WB.RegisterRd = ID/EX.RegisterRt (with noop)
+H4: EX/MEM.RegisterRd = ID/EX.RegisterRs
+H5: EX/MEM.RegisterRd = ID/EX.RegisterRs
+H6: EX/MEM.RegisterRd = ID/EX.RegisterRs

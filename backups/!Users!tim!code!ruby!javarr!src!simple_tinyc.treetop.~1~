@@ -1,0 +1,12 @@
+grammar TinyC
+
+   rule program
+      ( func-decl | var-decl )*
+   end
+
+   rule func-decl
+      type identifier para-list compound-stmt
+   end
+
+   rule type
+      "void" | "boolean" | "int" | "float"

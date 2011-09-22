@@ -1,0 +1,5 @@
+- Setup project structure in Mercurial
+- Read up on Ruby class definititions and how to create the AST classes.
+- Fill in a basic description of the project on the wiki page.
+- Add link to my github & bitbucket repos on blog page.
+- Define a formal BNF grammar for the language.

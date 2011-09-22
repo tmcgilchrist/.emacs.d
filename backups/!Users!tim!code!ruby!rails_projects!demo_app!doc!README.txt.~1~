@@ -1,0 +1,7 @@
+Switch to correct version of Ruby / Rails with packaged gemset.
+
+> rvm 1.9.2@rails3
+
+Set the default Ruby.
+
+> rvm --default use 1.9.2

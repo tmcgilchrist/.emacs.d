@@ -1,0 +1,10 @@
+class Token
+
+  def initialize(kind, spelling, position)
+    @kind = kind
+    @spelling = spelling
+    @position = position
+  end
+
+  attr_accessor :kind, :spelling, :position
+end
