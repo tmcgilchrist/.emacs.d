@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads nil nil ("findr-pkg.el" "findr.el") (19683 17524
-;;;;;;  996109))
+;;;### (autoloads nil nil ("findr-pkg.el" "findr.el") (20097 20910
+;;;;;;  795246))
 
 ;;;***
 

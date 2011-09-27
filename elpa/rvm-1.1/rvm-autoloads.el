@@ -3,8 +3,8 @@
 ;;; Code:
 
 
-;;;### (autoloads (rvm-use rvm-activate-corresponding-ruby rvm-use-default)
-;;;;;;  "rvm" "rvm.el" (19683 17915))
+;;;### (autoloads (rvm-open-gem rvm-use rvm-activate-corresponding-ruby
+;;;;;;  rvm-use-default) "rvm" "rvm.el" (20097 20974))
 ;;; Generated autoloads from rvm.el
 
 (autoload 'rvm-use-default "rvm" "\
@@ -24,9 +24,14 @@ switch the current ruby version to any ruby, which is installed with rvm
 
 \(fn NEW-RUBY NEW-GEMSET)" t nil)
 
+(autoload 'rvm-open-gem "rvm" "\
+
+
+\(fn GEMHOME)" t nil)
+
 ;;;***
 
-;;;### (autoloads nil nil ("rvm-pkg.el") (19683 17915 90215))
+;;;### (autoloads nil nil ("rvm-pkg.el") (20097 20974 84528))
 
 ;;;***
 

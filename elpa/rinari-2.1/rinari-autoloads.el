@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (rinari-minor-mode rinari-launch) "rinari" "rinari.el"
-;;;;;;  (19683 17533))
+;;;;;;  (20097 20916))
 ;;; Generated autoloads from rinari.el
 
 (autoload 'rinari-launch "rinari" "\
@@ -26,7 +26,7 @@ with the Ruby on Rails framework.
 
 ;;;***
 
-;;;### (autoloads nil nil ("rinari-pkg.el") (19683 17534 1789))
+;;;### (autoloads nil nil ("rinari-pkg.el") (20097 20917 1891))
 
 ;;;***
 
