@@ -18,3 +18,4 @@
 (require 'tsm-generic)
 (require 'tsm-ecb)
 (require 'tsm-color)
+(require 'tsm-misc)
