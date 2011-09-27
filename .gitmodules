@@ -1,0 +1,3 @@
+[submodule "vendor/ecb"]
+	path = vendor/ecb
+	url = https://github.com/emacsmirror/ecb.git
