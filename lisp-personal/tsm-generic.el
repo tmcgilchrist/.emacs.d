@@ -11,8 +11,9 @@
 (setq line-number-mode t)
 (setq column-number-mode t)
 
-;; Emacs gurus don't need no stinking scroll bars
+;; Emacs gurus don't need no stinking scroll bars, tools bar or menus
 (toggle-scroll-bar -1)
+(tool-bar-mode 0)
 
 ;; Line wrapping
 (set-default 'fill-column 80)
