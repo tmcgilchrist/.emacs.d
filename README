@@ -1,9 +1,0 @@
- Tim's Nasty emacs configuration
-
-The basic structure of the directories is:
-  elpa: is the Emacs Lisp Package Archive http://tromey.com/elpa/
-  lisp: is the packages I've installed manually before I found ELPA
-  lisp-personal: are my personal configuration files. Many of which actually work.
-  src: has copies of some of the source *.gz packages I used in the lisp directory.
-
-It surely isn't a pretty mess but it's a mess I've built over 8+ years of tinkering with Emacs.
