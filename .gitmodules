@@ -1,3 +1,6 @@
 [submodule "vendor/ecb"]
 	path = vendor/ecb
 	url = https://github.com/emacsmirror/ecb.git
+[submodule "vendor/markdown-mode"]
+	path = vendor/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git

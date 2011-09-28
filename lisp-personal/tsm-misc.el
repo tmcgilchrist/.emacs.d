@@ -4,7 +4,7 @@
 (defun reload-dotemacs () 
   "Reload .emacs" 
   (interactive)
-  (load-file "~/.emacs"))  
+  (load-file "~/.emacs.d/init.el"))  
 (global-set-key "\M-e" 'reload-dotemacs)
 
 ; This section programs a date function (useful for logging times 
