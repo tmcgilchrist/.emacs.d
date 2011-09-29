@@ -34,10 +34,13 @@ The you need to checkout the git submodules:
 
 * [Emacs Code Browser](https://github.com/emacsmirror/ecb)
 * [Markdown-mode](http://jblevins.org/projects/markdown-mode/)
+* [Yaml-mode](https://github.com/yoshiki/yaml-mode)
     
 Things to try
 
 * [Emacs Rails Reloaded](https://github.com/r0man/emacs-rails-reloaded)
 * [el-get for Emacs](https://github.com/dimitri/el-get)
 * Git integration with Emacs
-    
+* Add modes for erb/html syntax highlighting
+* Snippet support using something like yasnippet
+* 

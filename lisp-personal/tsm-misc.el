@@ -35,4 +35,8 @@
 
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
+(require 'hl-line)                      ; highlight current line
+(global-hl-line-mode t)
+(set-face-background 'hl-line "#330")
+
 (provide 'tsm-misc)

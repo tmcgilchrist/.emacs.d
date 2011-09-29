@@ -13,7 +13,7 @@
         '(ecb-options-version "2.40")
         '(ecb-tip-of-the-day nil))
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/ecb"))
+;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/ecb"))
 
 (require 'ecb)
 
