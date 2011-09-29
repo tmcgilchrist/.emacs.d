@@ -31,7 +31,7 @@ The you need to checkout the git submodules:
 * * * * *
 
 ## Resources ##
-
+* [Emacs Starter Kit](https://github.com/technomancy/emacs-starter-kit)
 * [Emacs Code Browser](https://github.com/emacsmirror/ecb)
 * [Markdown-mode](http://jblevins.org/projects/markdown-mode/)
 * [Yaml-mode](https://github.com/yoshiki/yaml-mode)
