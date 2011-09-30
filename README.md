@@ -35,6 +35,8 @@ The you need to checkout the git submodules:
 * [Emacs Code Browser](https://github.com/emacsmirror/ecb)
 * [Markdown-mode](http://jblevins.org/projects/markdown-mode/)
 * [Yaml-mode](https://github.com/yoshiki/yaml-mode)
+* [Emacs-rails-reloaded](http://github.com/dima-exe/emacs-rails-reloaded)
+* [Flymake-ruby](https://github.com/purcell/flymake-ruby)
     
 Things to try
 
@@ -43,4 +45,5 @@ Things to try
 * Git integration with Emacs
 * Add modes for erb/html syntax highlighting
 * Snippet support using something like yasnippet
-* 
+* Rinari integration with RVM, currently cannot use rinari-web-server
+* Switch to rinari mode when opening a rails project root.
