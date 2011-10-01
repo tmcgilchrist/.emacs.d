@@ -50,3 +50,4 @@ Things to try:
 * enable TRAMP mode
 * etags support for searching on methods/classes 
 * enabled Ruby documentation lookup using ri
+* enable [distel](https://github.com/massemanet/distel) for Erlang
