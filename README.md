@@ -38,7 +38,7 @@ The you need to checkout the git submodules:
 * [Emacs-rails-reloaded](http://github.com/dima-exe/emacs-rails-reloaded)
 * [Flymake-ruby](https://github.com/purcell/flymake-ruby)
     
-Things to try
+Things to try:
 
 * [Emacs Rails Reloaded](https://github.com/r0man/emacs-rails-reloaded)
 * [el-get for Emacs](https://github.com/dimitri/el-get)
@@ -47,3 +47,6 @@ Things to try
 * Snippet support using something like yasnippet
 * Rinari integration with RVM, currently cannot use rinari-web-server
 * Switch to rinari mode when opening a rails project root.
+* enable TRAMP mode
+* etags support for searching on methods/classes 
+* enabled Ruby documentation lookup using ri

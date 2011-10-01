@@ -17,25 +17,40 @@
   (package-refresh-contents))
 
 ;; Add in your own as you wish:
-(defvar my-packages '(ecb_snap rinari color-theme color-theme-railscasts rspec-mode findr 
-                               inf-ruby jump mode-compile ruby-compilation ruby-mode rvm 
-                               markdown-mode yaml-mode)
+(defvar my-packages '(ecb_snap 
+                      ;; Grab emacs starter kit goodies
+                      starter-kit starter-kit-ruby starter-kit-lisp starter-kit-js
+                      starter-kit-eshell starter-kit-bindings
+                      color-theme color-theme-railscasts
+                      
+                      ;; Ruby/Rails modes
+                      rinari rspec-mode findr inf-ruby jump mode-compile
+                      ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
+
+                      ;; Everything else
+                      haskell-mode prolog
+                      )
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
+;; My Customisations
+(setq flyspell-issue-welcome-flag nil)
+(setq-default ispell-program-name "/opt/local/bin/ispell")
 
-(add-to-list 'load-path "~/.emacs.d/lisp-personal/")
+(require 'color-theme-railscasts)
 
-(require 'tsm-generic)
-(require 'tsm-ecb)
-(require 'tsm-color)
-(require 'tsm-ido)
-(require 'tsm-misc)
-(require 'tsm-markdown)
-(require 'tsm-yaml)
+(require 'flymake-ruby)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
+(defun ri-bind-key () (local-set-key [f1] 'yari-anything))
+
+(add-hook 'ruby-mode-hook 'ri-bind-key)
+
+(add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown" . markdown-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -45,7 +60,7 @@
  '(ecb-auto-activate nil)
  '(ecb-layout-name "left14")
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/Users/tim/")))
+ '(ecb-source-path (quote ("/Users/tim/" ("/Users/tim/.emacs.d" ".emacs.d") ("/Users/tim/code/ruby/rails/pico" "pico"))))
  '(ecb-tip-of-the-day nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
