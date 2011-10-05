@@ -45,9 +45,15 @@
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
-(defun ri-bind-key () (local-set-key [f1] 'yari-anything))
+(require 'rvm)
+(add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
 
+(defun ri-bind-key () (local-set-key [f1] 'yari-anything))
 (add-hook 'ruby-mode-hook 'ri-bind-key)
+
+;; emacs-starter-kit version in ELPA defines this hook but it doesn't appear to
+;; work, so lets get rid of it
+(remove-hook 'ruby-mode-hook 'esk-run-coding-hook)
 
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown" . markdown-mode))
@@ -60,7 +66,7 @@
  '(ecb-auto-activate nil)
  '(ecb-layout-name "left14")
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/Users/tim/" ("/Users/tim/.emacs.d" ".emacs.d") ("/Users/tim/code/ruby/rails/pico" "pico"))))
+ '(ecb-source-path (quote ("/Users/tim/")))
  '(ecb-tip-of-the-day nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

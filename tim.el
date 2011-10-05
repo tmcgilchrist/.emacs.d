@@ -68,18 +68,20 @@
 (global-hl-line-mode t)
 (set-face-background 'hl-line "#330")
 
+(setq rinari-tags-file-name "TAGS")
+
 ;; Setup Erlang mode
-(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.6.4/emacs"
-					   load-path))
-(setq erlang-root-dir "/opt/local/lib/erlang")
-(setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
-(require 'erlang-start)
+;(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.6.4/emacs"
+;					   load-path))
+;(setq erlang-root-dir "/opt/local/lib/erlang")
+;(setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
+;(require 'erlang-start)
 
 ;; Some Erlang customizations
-(add-hook 'erlang-mode-hook
-	  (lambda ()
-	    ;; when starting an Erlang shell in Emacs, default in the node name
-	    (setq inferior-erlang-machine-options '("-sname" "emacs"))
-	    ;; add Erlang functions to an imenu menu
-	    (imenu-add-to-menubar "imenu")))
-(require 'erlang-flymake)
+;(add-hook 'erlang-mode-hook
+;	  (lambda ()
+;; 	    ;; when starting an Erlang shell in Emacs, default in the node name
+;; 	    (setq inferior-erlang-machine-options '("-sname" "emacs"))
+;; 	    ;; add Erlang functions to an imenu menu
+;; 	    (imenu-add-to-menubar "imenu")))
+;; (require 'erlang-flymake)
