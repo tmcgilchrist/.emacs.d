@@ -24,7 +24,7 @@
                       color-theme color-theme-railscasts
                       
                       ;; Ruby/Rails modes
-                      rinari rspec-mode findr inf-ruby jump mode-compile
+                      rinari_snap rspec-mode findr inf-ruby jump mode-compile
                       ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
 
                       ;; Everything else
