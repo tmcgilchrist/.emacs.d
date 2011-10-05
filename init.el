@@ -26,6 +26,7 @@
                       ;; Ruby/Rails modes
                       rinari_snap rspec-mode findr inf-ruby jump mode-compile
                       ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
+                      ruby-electric ruby-end
 
                       ;; Everything else
                       haskell-mode prolog
@@ -44,6 +45,9 @@
 
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
+(require 'ruby-electric)
+(add-hook 'ruby-mode-hook 'ruby-electric-mode)
 
 (require 'rvm)
 (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
@@ -78,4 +82,8 @@
  '(ecb-default-highlight-face ((t (:background "dark olive green")))))
 
 (ecb-activate)
+
+(require 'auto-complete-config nil t)
+(setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
+(ac-config-default)
 
