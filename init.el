@@ -55,6 +55,8 @@
 ;; work, so lets get rid of it
 (remove-hook 'ruby-mode-hook 'esk-run-coding-hook)
 
+(setq rinari-tags-file-name "TAGS")
+
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown" . markdown-mode))
 
@@ -63,8 +65,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ecb-auto-activate nil)
- '(ecb-layout-name "left14")
+ '(ecb-auto-activate t)
+ '(ecb-layout-name "left15")
  '(ecb-options-version "2.40")
  '(ecb-source-path (quote ("/Users/tim/")))
  '(ecb-tip-of-the-day nil))
@@ -74,4 +76,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-default-highlight-face ((t (:background "dark olive green")))))
+
+(ecb-activate)
 
