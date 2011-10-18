@@ -53,9 +53,6 @@
 (require 'rvm)
 (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
 
-(defun ri-bind-key () (local-set-key [f1] 'yari-anything))
-(add-hook 'ruby-mode-hook 'ri-bind-key)
-
 ;; emacs-starter-kit version in ELPA defines this hook but it doesn't appear to
 ;; work, so lets get rid of it
 (remove-hook 'ruby-mode-hook 'esk-run-coding-hook)
