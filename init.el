@@ -17,14 +17,15 @@
   (package-refresh-contents))
 
 ;; Add in your own as you wish:
-(defvar my-packages '(ecb_snap 
+(defvar my-packages '(ecb_snap
                       ;; Grab emacs starter kit goodies
                       starter-kit starter-kit-ruby starter-kit-lisp starter-kit-js
                       starter-kit-eshell starter-kit-bindings
                       color-theme color-theme-railscasts
-                      
+                      auto-complete
+
                       ;; Ruby/Rails modes
-                      rinari_snap rspec-mode findr inf-ruby jump mode-compile
+                      rinari rspec-mode findr inf-ruby jump mode-compile
                       ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
                       ruby-electric ruby-end
 
@@ -72,7 +73,7 @@
  '(ecb-auto-activate t)
  '(ecb-layout-name "left15")
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/Users/tim/")))
+ '(ecb-source-path (quote ("/Users/tim/" ("/Users/tim/.emacs.d" ".emacs.d") ("/Users/tim/code/erlang/otp_rebar_sample" "otp_rebar_sample") ("/Users/tim/code/ruby/rails/pico" "pico") ("/Users/tim/code/tmcgilchrist.github.com" "blog") ("/Users/tim/code/ruby/rails/blog" "blog"))))
  '(ecb-tip-of-the-day nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
