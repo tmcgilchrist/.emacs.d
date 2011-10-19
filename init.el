@@ -27,7 +27,7 @@
                       ;; Ruby/Rails modes
                       rinari rspec-mode findr inf-ruby jump mode-compile
                       ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
-                      ruby-electric ruby-end
+                      ruby-electric ruby-end coffee-mode
 
                       ;; Everything else
                       haskell-mode prolog
@@ -52,6 +52,13 @@
 
 (require 'rvm)
 (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
+
+(defun coffee-custom ()
+  "coffee-mode-hook"
+ (set (make-local-variable 'tab-width) 2))
+
+(add-hook 'coffee-mode-hook
+  '(lambda() (coffee-custom)))
 
 ;; emacs-starter-kit version in ELPA defines this hook but it doesn't appear to
 ;; work, so lets get rid of it
@@ -85,3 +92,6 @@
 (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
 (ac-config-default)
 
+;; Set the path for eshell, apparently it doesn't read .profile or .bash
+(setenv "PATH" (concat (getenv "PATH") ":/opt/local/bin"))
+(setq exec-path (append exec-path '("/opt/local/bin")))
