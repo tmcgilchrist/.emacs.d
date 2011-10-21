@@ -22,7 +22,7 @@
 (setq visible-bell t)
 
 ;; No startup messages
-(setq inhibit-startup-message t) 
+(setq inhibit-startup-message t)
 
 ;; only use spaces for indentation, damn it!
 (setq-default indent-tabs-mode nil)
@@ -30,13 +30,13 @@
 ;;; Various useful functions
 
 ;; reload .emacs file (useful for editing .emacs itself :)
-(defun reload-dotemacs () 
-  "Reload .emacs" 
+(defun reload-dotemacs ()
+  "Reload .emacs"
   (interactive)
-  (load-file "~/.emacs.d/init.el"))  
+  (load-file "~/.emacs.d/init.el"))
 (global-set-key "\M-e" 'reload-dotemacs)
 
-; This section programs a date function (useful for logging times 
+; This section programs a date function (useful for logging times
 ; in job notes, etc). The date function is attached to <C-x><C-d>.
 (defun current-date-and-time ()
   "Insert the current date and time (as given by UNIX date) at dot."
@@ -70,18 +70,22 @@
 
 (setq rinari-tags-file-name "TAGS")
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; Setup Erlang mode
-;(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.6.4/emacs"
-;					   load-path))
-;(setq erlang-root-dir "/opt/local/lib/erlang")
-;(setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
-;(require 'erlang-start)
+(when (file-exists-p "/opt/local/lib/erlang/lib/tools-2.6.6.4/emacs")
+    (setq load-path (cons "/opt/local/lib/erlang/lib/tools-2.6.6.4/emacs" load-path))
+    (setq erlang-root-dir "/opt/local/lib/erlang")
+    (setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
+    (require 'erlang-start)
+    (require 'erlang-flymake)
+    (defvar inferior-erlang-prompt-timeout t))
 
 ;; Some Erlang customizations
-;(add-hook 'erlang-mode-hook
-;	  (lambda ()
-;; 	    ;; when starting an Erlang shell in Emacs, default in the node name
-;; 	    (setq inferior-erlang-machine-options '("-sname" "emacs"))
-;; 	    ;; add Erlang functions to an imenu menu
-;; 	    (imenu-add-to-menubar "imenu")))
-;; (require 'erlang-flymake)
+(add-hook 'erlang-mode-hook
+	  (lambda ()
+	    ;; when starting an Erlang shell in Emacs, default in the node name
+	    (setq inferior-erlang-machine-options '("-sname" "emacs"))
+	    ;; add Erlang functions to an imenu menu
+	    (imenu-add-to-menubar "imenu")))
+

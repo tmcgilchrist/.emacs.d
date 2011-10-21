@@ -38,7 +38,36 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil t)
+  (url-retrieve
+   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
+   (lambda (s)
+     (end-of-buffer)
+     (eval-print-last-sexp))))
+
+(require 'el-get)
+
+
+(setq my-packages
+      (append
+       '(el-get nxhtml)
+       (mapcar 'el-get-source-name el-get-sources)))
+
+(el-get 'sync my-packages)
+
 ;; My Customisations
+
+(load "~/.emacs.d/el-get/nxhtml/autostart.el")
+(setq nxhtml-global-minor-mode t
+      mumamo-chunk-coloring 'submode-colored
+      nxhtml-skip-welcome t
+      indent-region-mode t
+      rng-nxml-auto-validate-flag nil
+      nxml-degraded t)
+(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-nxhtml-mumamo))
+
 (setq flyspell-issue-welcome-flag nil)
 (setq-default ispell-program-name "/opt/local/bin/ispell")
 
@@ -77,14 +106,17 @@
  '(ecb-auto-activate t)
  '(ecb-layout-name "left15")
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/Users/tim/" ("/Users/tim/.emacs.d" ".emacs.d") ("/Users/tim/code/erlang/otp_rebar_sample" "otp_rebar_sample") ("/Users/tim/code/ruby/rails/pico" "pico") ("/Users/tim/code/tmcgilchrist.github.com" "blog") ("/Users/tim/code/ruby/rails/blog" "blog"))))
  '(ecb-tip-of-the-day nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ecb-default-highlight-face ((t (:background "dark olive green")))))
+ '(ecb-default-highlight-face ((t (:background "dark olive green"))))
+ '(mumamo-background-chunk-major ((t nil)))
+ '(mumamo-background-chunk-submode1 ((t (:background "#1A2E00"))))
+ ;'(mumamo-background-chunk-submode1 ((t (:background "dark olive green"))))
+ )
 
 (ecb-activate)
 
