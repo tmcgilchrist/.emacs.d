@@ -69,7 +69,12 @@
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-nxhtml-mumamo))
 
 (setq flyspell-issue-welcome-flag nil)
-(setq-default ispell-program-name "/opt/local/bin/ispell")
+(if (eq system-type 'darwin)
+    (setq-default ispell-program-name "/opt/local/bin/ispell")
+  )
+(if (eq system-type 'gnu/linux)
+    (setq-default ispell-program-name "/usr/bin/ispell")
+  )
 
 (require 'color-theme-railscasts)
 
@@ -81,6 +86,10 @@
 
 (require 'rvm)
 (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
 
 (defun coffee-custom ()
   "coffee-mode-hook"
@@ -114,9 +123,7 @@
  ;; If there is more than one, they won't work right.
  '(ecb-default-highlight-face ((t (:background "dark olive green"))))
  '(mumamo-background-chunk-major ((t nil)))
- '(mumamo-background-chunk-submode1 ((t (:background "#1A2E00"))))
- ;'(mumamo-background-chunk-submode1 ((t (:background "dark olive green"))))
- )
+ '(mumamo-background-chunk-submode1 ((t (:background "#1A2E00")))))
 
 (ecb-activate)
 
