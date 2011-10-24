@@ -31,7 +31,10 @@ A few paths to executables may depend on MacPorts but that's it.
 * customise where backup files are placed.
 * refactor init.el so I have more configuration files in a directory called
   "tim"
-* go through and enable more of my old customisations for other languages.
+* re-enable slime-mode for common-lisp
+* re-enable haskell-mode
+* write an OS agnostic version of my erlang customisations.
+* c-mode, is this even required? Probably at some point.
 * learn all my damn keybindings
 
 * * * * *
