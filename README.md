@@ -6,6 +6,7 @@ The basic structure of the directories is:
 * vendor: includes git submodules for things not available in ELPA
 * lisp-personal: are my personal configuration files. Roughly one per mode.
 * init.el: loads all my customisations
+* tim.el: miscellaneous customisation options
 
 * * * * *
 
@@ -15,6 +16,7 @@ Grab a git clone of this repository
 
     git clone git://github.com/tmcgilchrist/.emacs.d.git
 
+A few paths to executables may depend on MacPorts but that's it.
 
 * * * * *
 
@@ -26,8 +28,10 @@ Grab a git clone of this repository
 * customise javascript mode so I get flymake, js-lint and fix the electric
   brackets support.
 * add snippets for jasmine tests.
+* customise where backup files are placed.
+* refactor init.el so I have more configuration files in a directory called
+  "tim"
 * go through and enable more of my old customisations for other languages.
-* enable el-get so I can checkout ELPA packages automatically
 * learn all my damn keybindings
 
 * * * * *
