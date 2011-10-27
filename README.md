@@ -3,12 +3,9 @@
 The basic structure of the directories is:
 
 * elpa: is the [Emacs Lisp Package Archive](http://tromey.com/elpa/)
-* vendor: includes git submodules for things not available in ELPA
 * lisp-personal: are my personal configuration files. Roughly one per mode.
 * init.el: loads all my customisations
 * tim.el: miscellaneous customisation options
-
-* * * * *
 
 ## Usage ##
 
@@ -18,9 +15,9 @@ Grab a git clone of this repository
 
 A few paths to executables may depend on MacPorts but that's it.
 
-* * * * *
-
 ## TODO ##
+
+Things to try out or fix in no particular order.
 
 * enable coffee-script mode with flymake, currently flymake is locking up emacs.
 * enable javascript mode inside mumamo-mode so i get syntax highlighting within
@@ -36,23 +33,10 @@ A few paths to executables may depend on MacPorts but that's it.
 * write an OS agnostic version of my erlang customisations.
 * c-mode, is this even required? Probably at some point.
 * learn all my damn keybindings
-
-* * * * *
-
-## Resources ##
-* [Emacs Starter Kit](https://github.com/technomancy/emacs-starter-kit)
-* [Emacs Code Browser](https://github.com/emacsmirror/ecb)
-* [Markdown-mode](http://jblevins.org/projects/markdown-mode/)
-* [Yaml-mode](https://github.com/yoshiki/yaml-mode)
-* [Emacs-rails-reloaded](http://github.com/dima-exe/emacs-rails-reloaded)
-* [Flymake-ruby](https://github.com/purcell/flymake-ruby)
-
-Things to try:
-
-* [Emacs Rails Reloaded](https://github.com/r0man/emacs-rails-reloaded)
+* enable RI mode for rinari so I can lookup the documentation for Ruby/Rails
+  code.
 * [el-get for Emacs](https://github.com/dimitri/el-get)
 * Git integration with Emacs
-* Add modes for erb/html syntax highlighting
 * Snippet support using something like yasnippet
 * Rinari integration with RVM, currently cannot use rinari-web-server
 * Switch to rinari mode when opening a rails project root.
@@ -60,3 +44,14 @@ Things to try:
 * etags support for searching on methods/classes
 * enabled Ruby documentation lookup using ri
 * enable [distel](https://github.com/massemanet/distel) for Erlang
+
+
+## Resources ##
+
+* [Emacs Starter Kit](https://github.com/technomancy/emacs-starter-kit)
+* [Emacs Code Browser](https://github.com/emacsmirror/ecb)
+* [Markdown-mode](http://jblevins.org/projects/markdown-mode/)
+* [Yaml-mode](https://github.com/yoshiki/yaml-mode)
+* [Emacs-rails-reloaded](http://github.com/dima-exe/emacs-rails-reloaded)
+* [Flymake-ruby](https://github.com/purcell/flymake-ruby)
+
