@@ -54,3 +54,5 @@ Actions in Rinari:
     C-x v d         vc-directory -- show all files which are not up to date
     M-x vc-register add file into version control tracking
 
+### Misc
+    C-x 0           kill window 
