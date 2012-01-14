@@ -73,13 +73,12 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Setup Erlang mode
-(when (file-exists-p "/opt/local/lib/erlang/lib/tools-2.6.6.4/emacs")
-    (setq load-path (cons "/opt/local/lib/erlang/lib/tools-2.6.6.4/emacs" load-path))
-    (setq erlang-root-dir "/opt/local/lib/erlang")
-    (setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
-    (require 'erlang-start)
-    (require 'erlang-flymake)
-    (defvar inferior-erlang-prompt-timeout t))
+(setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.6.6.5/emacs" load-path))
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+(require 'erlang-flymake)
+(defvar inferior-erlang-prompt-timeout t)
 
 ;; Some Erlang customizations
 (add-hook 'erlang-mode-hook
@@ -89,3 +88,31 @@
 	    ;; add Erlang functions to an imenu menu
 	    (imenu-add-to-menubar "imenu")))
 
+;; Originally from stevey, adapted to support moving to a new directory.
+(defun rename-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive
+   (progn
+     (if (not (buffer-file-name))
+         (error "Buffer '%s' is not visiting a file!" (buffer-name)))
+     (list (read-file-name (format "Rename %s to: " (file-name-nondirectory
+                                                     (buffer-file-name)))))))
+  (if (equal new-name "")
+      (error "Aborted rename"))
+  (setq new-name (if (file-directory-p new-name)
+                     (expand-file-name (file-name-nondirectory
+                                        (buffer-file-name))
+                                       new-name)
+                   (expand-file-name new-name)))
+  ;; If the file isn't saved yet, skip the file rename, but still update the
+  ;; buffer name and visited file.
+  (if (file-exists-p (buffer-file-name))
+      (rename-file (buffer-file-name) new-name 1))
+  (let ((was-modified (buffer-modified-p)))
+    ;; This also renames the buffer, and works with uniquify
+    (set-visited-file-name new-name)
+    (if was-modified
+        (save-buffer)
+      ;; Clear buffer-modified flag caused by set-visited-file-name
+      (set-buffer-modified-p nil))
+  (message "Renamed to %s." new-name)))

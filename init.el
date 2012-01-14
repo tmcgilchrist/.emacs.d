@@ -55,6 +55,7 @@
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync my-packages)
+(el-get 'wait)
 
 ;; My Customisations
 
@@ -114,7 +115,9 @@
  '(ecb-auto-activate t)
  '(ecb-layout-name "left15")
  '(ecb-options-version "2.40")
+ '(ecb-source-path (quote ("/Users/tim/" ("/Users/tim/.emacs.d" ".emacs.d") ("/Users/tim/code/ruby/rails/pico" "pico") ("/Users/tim/code/tmcgilchrist.github.com" "blog") ("/Users/tim/code/ruby/rails/backbone-blog" "backbone-blog") ("/Users/tim/code/backbone/backbone-tunes" "tunes") ("/Users/tim/code/ruby/rails/surveysays" "surveysays") ("/Users/tim/source/capuchin" "capuchin") ("/Users/tim/code/erlang/otp_rebar_sample" "otp_rebar") ("/Users/tim/code/erlang/dhcp_otp" "dhcp_otp") "/Users/tim/projects/slide_machine" "/Users/tim/projects/simple_cache" "/Users/tim/projects/kahvemill")))
  '(ecb-tip-of-the-day nil))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
