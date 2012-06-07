@@ -2,13 +2,12 @@
 ;;
 (require 'package)
 
-;; Add the original Emacs Lisp Package Archive
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-;; Add the user-contributed repository
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(setq package-archives '(("ELPA" . "http://tromey.com/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
+
 
 (setq debug-on-error t)
 (setq stack-trace-on-error t)
@@ -18,6 +17,7 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages '(ecb_snap
+
                       ;; Grab emacs starter kit goodies
                       starter-kit starter-kit-ruby starter-kit-lisp starter-kit-js
                       starter-kit-eshell starter-kit-bindings
@@ -27,7 +27,7 @@
                       ;; Ruby/Rails modes
                       rinari rspec-mode findr inf-ruby jump mode-compile
                       ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
-                      ruby-electric ruby-end coffee-mode
+                      ruby-electric ruby-end coffee-mode feature-mode
 
                       ;; Everything else
                       haskell-mode prolog
@@ -51,7 +51,7 @@
 
 (setq my-packages
       (append
-       '(el-get nxhtml feature-mode)
+       '(el-get nxhtml)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync my-packages)
@@ -90,7 +90,6 @@
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
-
 (defun coffee-custom ()
   "coffee-mode-hook"
  (set (make-local-variable 'tab-width) 2))
@@ -115,7 +114,7 @@
  '(ecb-auto-activate t)
  '(ecb-layout-name "left15")
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/Users/tim/" ("/Users/tim/.emacs.d" ".emacs.d") ("/Users/tim/code/ruby/rails/pico" "pico") ("/Users/tim/code/tmcgilchrist.github.com" "blog") ("/Users/tim/code/ruby/rails/backbone-blog" "backbone-blog") ("/Users/tim/code/backbone/backbone-tunes" "tunes") ("/Users/tim/code/ruby/rails/surveysays" "surveysays") ("/Users/tim/source/capuchin" "capuchin") ("/Users/tim/code/erlang/otp_rebar_sample" "otp_rebar") ("/Users/tim/code/erlang/dhcp_otp" "dhcp_otp") "/Users/tim/projects/slide_machine" "/Users/tim/projects/simple_cache" "/Users/tim/projects/kahvemill")))
+ '(ecb-source-path (quote ("/Users/tim/" )))
  '(ecb-tip-of-the-day nil))
 
 (custom-set-faces
