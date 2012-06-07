@@ -13,7 +13,7 @@ Grab a git clone of this repository
 
     git clone git://github.com/tmcgilchrist/.emacs.d.git
 
-A few paths to executables may depend on MacPorts but that's it.
+A few paths to executables may depend on MacPorts/Homebrew but that's it.
 
 ## TODO ##
 
@@ -30,7 +30,6 @@ Things to try out or fix in no particular order.
   "tim"
 * re-enable slime-mode for common-lisp
 * re-enable haskell-mode
-* write an OS agnostic version of my erlang customisations.
 * c-mode, is this even required? Probably at some point.
 * learn all my damn keybindings
 * enable RI mode for rinari so I can lookup the documentation for Ruby/Rails
@@ -38,7 +37,6 @@ Things to try out or fix in no particular order.
 * [el-get for Emacs](https://github.com/dimitri/el-get)
 * Git integration with Emacs
 * Snippet support using something like yasnippet
-* Rinari integration with RVM, currently cannot use rinari-web-server
 * Switch to rinari mode when opening a rails project root.
 * enable TRAMP mode
 * etags support for searching on methods/classes
