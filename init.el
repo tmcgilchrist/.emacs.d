@@ -2,12 +2,10 @@
 ;;
 (require 'package)
 
-;; Add the original Emacs Lisp Package Archive
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-;; Add the user-contributed repository
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(setq package-archives '(("ELPA" . "http://tromey.com/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
 (setq debug-on-error t)
@@ -27,7 +25,7 @@
                       ;; Ruby/Rails modes
                       rinari rspec-mode findr inf-ruby jump mode-compile
                       ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
-                      ruby-electric ruby-end coffee-mode
+                      ruby-electric ruby-end coffee-mode feature-mode
 
                       ;; Everything else
                       haskell-mode prolog
@@ -51,7 +49,7 @@
 
 (setq my-packages
       (append
-       '(el-get nxhtml feature-mode)
+       '(el-get nxhtml)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync my-packages)
