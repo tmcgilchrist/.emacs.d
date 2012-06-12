@@ -73,7 +73,9 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Setup Erlang mode
-(setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.6.7/emacs" load-path))
+(add-to-list
+   'load-path
+       (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
 (setq erlang-root-dir "/usr/local/lib/erlang")
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
