@@ -27,7 +27,7 @@
                       ;; Ruby/Rails modes
                       rinari rspec-mode findr inf-ruby jump mode-compile
                       ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
-                      ruby-electric ruby-end coffee-mode feature-mode
+                      ruby-electric ruby-end coffee-mode feature-mode haml-mode
 
                       ;; Everything else
                       haskell-mode prolog
@@ -70,7 +70,7 @@
 
 (setq flyspell-issue-welcome-flag nil)
 (if (eq system-type 'darwin)
-    (setq-default ispell-program-name "/opt/local/bin/ispell")
+    (setq-default ispell-program-name "/usr/local/bin/ispell")
   )
 (if (eq system-type 'gnu/linux)
     (setq-default ispell-program-name "/usr/bin/ispell")
@@ -89,6 +89,13 @@
 
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
+(require 'haml-mode)
+
+(add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\.haml$" . haml-mode))
+(add-hook 'haml-mode-hook 'rinari-minor-mode)
+
 
 (defun coffee-custom ()
   "coffee-mode-hook"
