@@ -99,7 +99,9 @@
 
 (defun coffee-custom ()
   "coffee-mode-hook"
- (set (make-local-variable 'tab-width) 2))
+  (set (make-local-variable 'tab-width) 2)
+  (setq coffee-command "/usr/local/bin/coffee")
+  )
 
 (add-hook 'coffee-mode-hook
   '(lambda() (coffee-custom)))
@@ -121,7 +123,7 @@
  '(ecb-auto-activate t)
  '(ecb-layout-name "left15")
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/Users/tim/" )))
+ '(ecb-source-path (quote ("/Users/tim/projects/slide_machine" "/Users/tim/projects/kahvemill" "/Users/tim/code/erlang/heroku_demo" ("/Users/tim/projects/lambdafoo.com" "lambdafoo.com") "/Users/tim/source/ruby-roy" "/Users/tim" "/Users/tim/source/ripple" "/Users/tim/projects/webmachine-fundamentals" "/Users/tim/projects/herbage" "/Users/tim/projects/ruby-roy")))
  '(ecb-tip-of-the-day nil))
 
 (custom-set-faces
@@ -140,5 +142,5 @@
 (ac-config-default)
 
 ;; Set the path for eshell, apparently it doesn't read .profile or .bash
-(setenv "PATH" (concat (getenv "PATH") ":/opt/local/bin"))
-(setq exec-path (append exec-path '("/opt/local/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
