@@ -115,25 +115,8 @@
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown" . markdown-mode))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ecb-auto-activate t)
- '(ecb-layout-name "left15")
- '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/Users/tim/projects/slide_machine" "/Users/tim/projects/kahvemill" "/Users/tim/code/erlang/heroku_demo" ("/Users/tim/projects/lambdafoo.com" "lambdafoo.com") "/Users/tim/source/ruby-roy" "/Users/tim" "/Users/tim/source/ripple" "/Users/tim/projects/webmachine-fundamentals" "/Users/tim/projects/herbage" "/Users/tim/projects/ruby-roy")))
- '(ecb-tip-of-the-day nil))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ecb-default-highlight-face ((t (:background "dark olive green"))))
- '(mumamo-background-chunk-major ((t nil)))
- '(mumamo-background-chunk-submode1 ((t (:background "#1A2E00")))))
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
 
 (ecb-activate)
 

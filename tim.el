@@ -73,7 +73,6 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Setup Erlang mode
-<<<<<<< Updated upstream
 (add-to-list
    'load-path
        (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
@@ -124,4 +123,3 @@
  '(diff-added ((t (:foreground "Green"))) 'now)
  '(diff-removed ((t (:foreground "Red"))) 'now)
  )
-
