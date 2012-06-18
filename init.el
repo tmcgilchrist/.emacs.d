@@ -27,6 +27,7 @@
     rinari rspec-mode findr inf-ruby jump mode-compile
     ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
     ruby-electric ruby-end coffee-mode feature-mode haml-mode
+    flymake-coffee
 
     ;; Everything else
     haskell-mode prolog
