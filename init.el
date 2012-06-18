@@ -8,7 +8,6 @@
 			 ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
-
 (setq debug-on-error t)
 (setq stack-trace-on-error t)
 
@@ -16,22 +15,22 @@
   (package-refresh-contents))
 
 ;; Add in your own as you wish:
-(defvar my-packages '(ecb_snap
+(defvar my-packages
+  '(ecb_snap
+    ;; Grab emacs starter kit goodies
+    starter-kit starter-kit-ruby starter-kit-lisp starter-kit-js
+    starter-kit-eshell starter-kit-bindings
+    color-theme color-theme-railscasts
+    auto-complete
 
-                      ;; Grab emacs starter kit goodies
-                      starter-kit starter-kit-ruby starter-kit-lisp starter-kit-js
-                      starter-kit-eshell starter-kit-bindings
-                      color-theme color-theme-railscasts
-                      auto-complete
+    ;; Ruby/Rails modes
+    rinari rspec-mode findr inf-ruby jump mode-compile
+    ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
+    ruby-electric ruby-end coffee-mode feature-mode haml-mode
 
-                      ;; Ruby/Rails modes
-                      rinari rspec-mode findr inf-ruby jump mode-compile
-                      ruby-compilation ruby-mode rvm markdown-mode yaml-mode flymake-ruby
-                      ruby-electric ruby-end coffee-mode feature-mode haml-mode
-
-                      ;; Everything else
-                      haskell-mode prolog
-                      )
+    ;; Everything else
+    haskell-mode prolog
+    )
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -69,12 +68,7 @@
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-nxhtml-mumamo))
 
 (setq flyspell-issue-welcome-flag nil)
-(if (eq system-type 'darwin)
-    (setq-default ispell-program-name "/usr/local/bin/ispell")
-  )
-(if (eq system-type 'gnu/linux)
-    (setq-default ispell-program-name "/usr/bin/ispell")
-  )
+(setq-default ispell-program-name "/usr/local/bin/ispell")
 
 (require 'color-theme-railscasts)
 
@@ -91,11 +85,9 @@
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 (require 'haml-mode)
-
 (add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\.haml$" . haml-mode))
 (add-hook 'haml-mode-hook 'rinari-minor-mode)
-
 
 (defun coffee-custom ()
   "coffee-mode-hook"
@@ -112,6 +104,7 @@
 
 (setq rinari-tags-file-name "TAGS")
 
+(require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown" . markdown-mode))
 

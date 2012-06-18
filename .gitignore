@@ -4,4 +4,6 @@ elpa
 places
 url
 el-get
+ac-comphist.dat
 custom.el
+.smex-items
