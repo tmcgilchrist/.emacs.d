@@ -4,9 +4,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-auto-activate t)
- '(ecb-layout-name "left15")
+ '(ecb-layout-name "left14")
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/Users/tim/" ("/Users/tim/Blake/re" "Reading Eggs") ("/Users/tim/Blake/rex-student" "Reading Eggspress") ("/Users/tim/Blake/blake-admin" "Admin"))))
+ '(ecb-source-path (quote ("/Users/tim/")))
  '(ecb-tip-of-the-day nil))
 
 (custom-set-faces
