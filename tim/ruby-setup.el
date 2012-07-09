@@ -23,11 +23,16 @@
 (add-hook 'coffee-mode-hook
   '(lambda() (coffee-custom)))
 
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (define-key ruby-mode-map "\C-c\C-c"
+                              'comment-or-uncomment-region)))
+
 ;; emacs-starter-kit version in ELPA defines this hook but it doesn't appear to
 ;; work, so lets get rid of it
 (remove-hook 'ruby-mode-hook 'esk-run-coding-hook)
 
-(setq rinari-tags-file-name "TAGS")
+(setq rinari-tags-file-name "tags")
 
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
