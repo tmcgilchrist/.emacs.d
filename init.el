@@ -26,8 +26,8 @@
     ;; Ruby/Rails modes
     ruby-mode rinari inf-ruby findr jump mode-compile
     ruby-compilation rvm ruby-electric ruby-end
-    rspec-mode coffee-mode feature-mode haml-mode markdown-mode yaml-mode
-    flymake-ruby flymake-coffee))
+    rspec-mode coffee-mode feature-mode haml-mode markdown-mode yaml-mode sass-mode
+    flymake-ruby flymake-coffee flymake-sass))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
