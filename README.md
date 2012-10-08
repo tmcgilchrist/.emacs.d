@@ -1,11 +1,16 @@
 ## Tim's Emacs Configuration ##
 
+I use Emacs for most of my text editing needs, on my various Mac or Linux
+systems. Mostly I'm coding something in either Ruby, Erlang, JavaScript,
+CoffeeScript or Java.
+
 The basic structure of the directories is:
 
 * elpa: is the [Emacs Lisp Package Archive](http://tromey.com/elpa/)
-* lisp-personal: are my personal configuration files. Roughly one per mode.
 * init.el: loads all my customisations
-* tim.el: miscellaneous customisation options
+* tim: miscellaneous customisation files
+* custom.el: output of Custom.
+* lisp-personal: are my old configuration files, one per mode. Unused.
 
 ## Usage ##
 
@@ -19,29 +24,22 @@ A few paths to executables may depend on MacPorts/Homebrew but that's it.
 
 Things to try out or fix in no particular order.
 
-* enable coffee-script mode with flymake, currently flymake is locking up emacs.
-* enable javascript mode inside mumamo-mode so i get syntax highlighting within
-  templates.
-* customise javascript mode so I get flymake, js-lint and fix the electric
-  brackets support.
-* add snippets for jasmine tests.
+* enable TRAMP mode
 * customise where backup files are placed.
-* refactor init.el so I have more configuration files in a directory called
-  "tim"
 * re-enable slime-mode for common-lisp
-* re-enable haskell-mode
 * c-mode, is this even required? Probably at some point.
-* learn all my damn keybindings
 * enable RI mode for rinari so I can lookup the documentation for Ruby/Rails
   code.
 * [el-get for Emacs](https://github.com/dimitri/el-get)
 * Git integration with Emacs
 * Snippet support using something like yasnippet
-* Switch to rinari mode when opening a rails project root.
-* enable TRAMP mode
 * etags support for searching on methods/classes
-* enabled Ruby documentation lookup using ri
 * enable [distel](https://github.com/massemanet/distel) for Erlang
+* enable javascript mode inside mumamo-mode so i get syntax highlighting within
+  templates.
+* customise javascript mode so I get flymake, js-lint and fix the electric
+  brackets support.
+* add snippets for jasmine tests.
 
 
 ## Resources ##
@@ -52,4 +50,3 @@ Things to try out or fix in no particular order.
 * [Yaml-mode](https://github.com/yoshiki/yaml-mode)
 * [Emacs-rails-reloaded](http://github.com/dima-exe/emacs-rails-reloaded)
 * [Flymake-ruby](https://github.com/purcell/flymake-ruby)
-
