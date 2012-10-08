@@ -1,5 +1,18 @@
 ## Cheat Sheet for Emacs Bindings
 
+### Feature Mode (Cucumber)
+
+    C-c , v    Run all scenarios in current file
+    C-c , s    Run current scenario
+    C-c , f    Run all scenarios in the project
+    
+### Rspec Mode
+
+    C-c , v    Run all specs in current file
+    C-c , s    Run current spec
+    C-c , a    Run all specs in project
+    C-c , t    Toggle between spec and code
+
 ### Rinari Mode
 
 Basic Navigation commands
