@@ -6,7 +6,7 @@
  '(ecb-auto-activate t)
  '(ecb-layout-name "left14")
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/Users/tim/" ("/Users/tim/Blake/re" "Reading Eggs") ("/Users/tim/Blake/rex-student" "REX") ("/Users/tim/Blake/blake-admin" "Admin") ("/Users/tim/Blake/blake-shared" "blake-shared") ("/Users/tim/Blake/blake-common" "blake-common") "/Users/tim/Blake/blake-cloud")))
+ '(ecb-source-path (quote ("/Users/tim/")))
  '(ecb-tip-of-the-day nil))
 
 (custom-set-faces
