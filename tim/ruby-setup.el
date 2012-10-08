@@ -36,3 +36,13 @@
   (let ((shell-file-name "/bin/bash"))
     ad-do-it))
 (ad-activate 'rspec-compile)
+
+(add-hook 'cucumber-mode-hook
+          (lambda ()
+            (setq feature-use-rvm t)))
+
+(defadvice feature-run-cucumber (around feature-run-cucumber-around)
+  "Use BASH shell for running the specs because of ZSH "
+  (let ((shell-file-name "/bin/bash"))
+    ad-do-it))
+(ad-activate 'feature-run-cucumber)
