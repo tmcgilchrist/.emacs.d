@@ -68,7 +68,7 @@
 (global-hl-line-mode t)
 (set-face-background 'hl-line "#330")
 
-(setq rinari-tags-file-name "TAGS")
+
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -118,8 +118,3 @@
       ;; Clear buffer-modified flag caused by set-visited-file-name
       (set-buffer-modified-p nil))
   (message "Renamed to %s." new-name)))
-
-(custom-set-faces
- '(diff-added ((t (:foreground "Green"))) 'now)
- '(diff-removed ((t (:foreground "Red"))) 'now)
- )
