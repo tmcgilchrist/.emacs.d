@@ -25,7 +25,7 @@
 
     ;; Ruby/Rails modes
     ruby-mode rinari inf-ruby findr jump mode-compile
-    ruby-compilation rvm ruby-electric ruby-end
+    ruby-compilation rvm ruby-electric ruby-end handlebars-mode
     rspec-mode coffee-mode feature-mode haml-mode markdown-mode yaml-mode sass-mode
     flymake-ruby flymake-coffee flymake-sass))
 
@@ -33,35 +33,35 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(unless (require 'el-get nil t)
-  (url-retrieve
-   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
-   (lambda (s)
-     (end-of-buffer)
-     (eval-print-last-sexp))))
+;; (unless (require 'el-get nil t)
+;;   (url-retrieve
+;;    "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
+;;    (lambda (s)
+;;      (end-of-buffer)
+;;      (eval-print-last-sexp))))
 
-(require 'el-get)
+;; (require 'el-get)
 
-(setq my-packages
-      (append
-       '(el-get nxhtml)
-       (mapcar 'el-get-source-name el-get-sources)))
+;; (setq my-packages
+;;       (append
+;;        '(el-get nxhtml)
+;;        (mapcar 'el-get-source-name el-get-sources)))
 
-(el-get 'sync my-packages)
-(el-get 'wait)
+;; (el-get 'sync my-packages)
+;; (el-get 'wait)
 
 ;; My Customisations
 
-(load "~/.emacs.d/el-get/nxhtml/autostart.el")
-(setq nxhtml-global-minor-mode t
-      mumamo-chunk-coloring 'submode-colored
-      nxhtml-skip-welcome t
-      indent-region-mode t
-      rng-nxml-auto-validate-flag nil
-      nxml-degraded t)
-(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-nxhtml-mumamo))
+;; (load "~/.emacs.d/el-get/nxhtml/autostart.el")
+;; (setq nxhtml-global-minor-mode t
+;;       mumamo-chunk-coloring 'submode-colored
+;;       nxhtml-skip-welcome t
+;;       indent-region-mode t
+;;       rng-nxml-auto-validate-flag nil
+;;       nxml-degraded t)
+;; (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-nxhtml-mumamo))
 
 (setq flyspell-issue-welcome-flag nil)
 (setq-default ispell-program-name "/usr/local/bin/ispell")
