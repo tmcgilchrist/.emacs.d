@@ -31,6 +31,9 @@
 
     ;; JavaScript modes
     js2-mode flymake-jslint
+
+    ;; Clojure modes
+    clojure-mode clojure-test-mode nrepl paredit
     ))
 
 (dolist (p my-packages)
