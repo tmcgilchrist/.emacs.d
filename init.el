@@ -2,10 +2,9 @@
 ;;
 (require 'package)
 
-(setq package-archives '(("ELPA" . "http://tromey.com/elpa/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")))
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
 (setq debug-on-error t)
@@ -34,6 +33,9 @@
 
     ;; Clojure modes
     clojure-mode clojure-test-mode nrepl paredit
+
+    ;; Haskell modes
+    haskell-mode
     ))
 
 (dolist (p my-packages)
@@ -55,14 +57,6 @@
 ;; Set the path for eshell, apparently it doesn't read .profile or .bash
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
-
-
-(require 'real-auto-save)
-
-(add-hook 'text-mode-hook 'turn-on-real-auto-save)
-(add-hook 'muse-mode-hook 'turn-on-real-auto-save)
-(add-hook 'ruby-mode-hook 'turn-on-real-auto-save)
-(add-hook 'erlang-mode-hook 'turn-on-real-auto-save)
 
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)

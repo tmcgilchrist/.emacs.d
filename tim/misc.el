@@ -129,3 +129,7 @@ Assumes that the frame is only split into two."
       ;; Clear buffer-modified flag caused by set-visited-file-name
       (set-buffer-modified-p nil))
   (message "Renamed to %s." new-name)))
+
+
+(custom-set-variables
+ '(haskell-mode-hook '(turn-on-haskell-simple-indent)))
