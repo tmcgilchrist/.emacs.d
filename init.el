@@ -26,7 +26,7 @@
     ruby-mode rinari inf-ruby findr jump mode-compile
     ruby-compilation rvm ruby-electric ruby-end handlebars-mode
     rspec-mode coffee-mode feature-mode haml-mode markdown-mode yaml-mode sass-mode
-    flymake-ruby flymake-coffee flymake-sass
+    flymake-ruby flymake-coffee flymake-sass chruby
 
     ;; JavaScript modes
     js2-mode flymake-jslint
@@ -64,3 +64,9 @@
 
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+(setenv "ESHELL" (expand-file-name "~/bin/eshell"))
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq indent-line-function 'insert-tab)

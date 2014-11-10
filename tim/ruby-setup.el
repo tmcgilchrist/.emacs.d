@@ -1,6 +1,6 @@
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
-(add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
+;; (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
 (add-hook 'ruby-mode-hook 'paredit-mode)
 (add-hook 'ruby-mode-hook 'rinari-minor-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
@@ -25,9 +25,8 @@
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown" . markdown-mode))
 
-(setq rspec-use-rake-when-possible nil)
+(setq rspec-use-rake-when-possible t)
 (setq rspec-use-rake-flag nil)
-(setq rspec-use-rvm t)
 (setq rspec-use-bundler-when-possible t)
 (setq rspec-use-opts-file-when-available t)
 
@@ -37,9 +36,9 @@
     ad-do-it))
 (ad-activate 'rspec-compile)
 
-(add-hook 'cucumber-mode-hook
-          (lambda ()
-            (setq feature-use-rvm t)))
+;; (add-hook 'cucumber-mode-hook
+;;           (lambda ()
+;;             (setq feature-use-rvm t)))
 
 (defadvice feature-run-cucumber (around feature-run-cucumber-around)
   "Use BASH shell for running the specs because of ZSH "
@@ -91,3 +90,10 @@
 
 (global-set-key (kbd "C-c , b") 'blake-rgrep)
 (global-set-key (kbd "C-c ' b") 'blake-rgrep)
+
+;; FIXME: it should be available in next versions of ruby-mode.el
+(defun ruby-insert-end ()
+  (interactive)
+  (insert "end")
+  (ruby-indent-line t)
+  (end-of-line))
