@@ -1,6 +1,5 @@
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
-;; (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
 (add-hook 'ruby-mode-hook 'paredit-mode)
 (add-hook 'ruby-mode-hook 'rinari-minor-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
@@ -35,10 +34,6 @@
   (let ((shell-file-name "/bin/bash"))
     ad-do-it))
 (ad-activate 'rspec-compile)
-
-;; (add-hook 'cucumber-mode-hook
-;;           (lambda ()
-;;             (setq feature-use-rvm t)))
 
 (defadvice feature-run-cucumber (around feature-run-cucumber-around)
   "Use BASH shell for running the specs because of ZSH "

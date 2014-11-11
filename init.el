@@ -19,7 +19,7 @@
     ;; Grab emacs starter kit goodies
     starter-kit starter-kit-ruby starter-kit-lisp
     starter-kit-eshell starter-kit-bindings
-    color-theme color-theme-railscasts
+    color-theme gotham
     auto-complete
 
     ;; Ruby/Rails modes
@@ -44,8 +44,6 @@
 
 (setq flyspell-issue-welcome-flag nil)
 (setq-default ispell-program-name "/usr/local/bin/ispell")
-
-(require 'color-theme-railscasts)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
