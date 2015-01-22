@@ -19,7 +19,7 @@
     ;; Grab emacs starter kit goodies
     starter-kit starter-kit-ruby starter-kit-lisp
     starter-kit-eshell starter-kit-bindings
-    color-theme gotham
+    color-theme
     auto-complete
 
     ;; Ruby/Rails modes
@@ -68,3 +68,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq indent-line-function 'insert-tab)
+(put 'downcase-region 'disabled nil)
+
+(require 'magit-gh-pulls)
+(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+
+(global-set-key (kbd "C-x g") 'magit-status)

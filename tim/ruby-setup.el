@@ -1,7 +1,7 @@
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook 'ruby-electric-mode)
 (add-hook 'ruby-mode-hook 'paredit-mode)
 (add-hook 'ruby-mode-hook 'rinari-minor-mode)
+(add-hook 'ruby-mode-hook 'rspec-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\.haml$" . haml-mode))
@@ -24,10 +24,14 @@
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown" . markdown-mode))
 
+(setq rspec-use-chruby t)
 (setq rspec-use-rake-when-possible t)
 (setq rspec-use-rake-flag nil)
 (setq rspec-use-bundler-when-possible t)
 (setq rspec-use-opts-file-when-available t)
+
+(require 'chruby)
+(chruby "2.1.2")
 
 (defadvice rspec-compile (around rspec-compile-around)
   "Use BASH shell for running the specs because of ZSH issues."
@@ -35,11 +39,11 @@
     ad-do-it))
 (ad-activate 'rspec-compile)
 
-(defadvice feature-run-cucumber (around feature-run-cucumber-around)
-  "Use BASH shell for running the specs because of ZSH "
-  (let ((shell-file-name "/bin/bash"))
-    ad-do-it))
-(ad-activate 'feature-run-cucumber)
+;; (defadvice feature-run-cucumber (around feature-run-cucumber-around)
+;;   "Use BASH shell for running the specs because of ZSH "
+;;   (let ((shell-file-name "/bin/zsh"))
+;;     ad-do-it))
+;; (ad-activate 'feature-run-cucumber)
 
 (defun blake-rgrep (&optional arg)
   "Based on rinari..."
