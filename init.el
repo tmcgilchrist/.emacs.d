@@ -15,12 +15,12 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages
-  '(ecb_snap
+  '(
     ;; Grab emacs starter kit goodies
     starter-kit starter-kit-ruby starter-kit-lisp
     starter-kit-eshell starter-kit-bindings
     color-theme
-    auto-complete
+    auto-complete yasnippet magit-gh-pulls
 
     ;; Ruby/Rails modes
     ruby-mode rinari inf-ruby findr jump mode-compile
@@ -32,7 +32,7 @@
     js2-mode flymake-jslint
 
     ;; Clojure modes
-    clojure-mode clojure-test-mode nrepl paredit
+    clojure-mode cider paredit
 
     ;; Haskell modes
     haskell-mode
