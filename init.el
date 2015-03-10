@@ -20,7 +20,7 @@
     starter-kit starter-kit-ruby starter-kit-lisp
     starter-kit-eshell starter-kit-bindings
     color-theme
-    auto-complete yasnippet magit-gh-pulls
+    auto-complete yasnippet magit-gh-pulls afternoon-theme
 
     ;; Ruby/Rails modes
     ruby-mode rinari inf-ruby findr jump mode-compile
@@ -36,6 +36,8 @@
 
     ;; Haskell modes
     haskell-mode
+    ;; OCaml modes
+    tuareg utop merlin
     ))
 
 (dolist (p my-packages)
