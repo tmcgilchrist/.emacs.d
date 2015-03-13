@@ -19,6 +19,9 @@
             (define-key ruby-mode-map "\C-c\C-c"
                               'comment-or-uncomment-region)))
 
+(defun inf-ruby-keys ()
+    )
+
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
@@ -44,6 +47,8 @@
 ;;   (let ((shell-file-name "/bin/zsh"))
 ;;     ad-do-it))
 ;; (ad-activate 'feature-run-cucumber)
+
+
 
 (defun blake-rgrep (&optional arg)
   "Based on rinari..."
