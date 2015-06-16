@@ -1,8 +1,8 @@
 ## Tim's Emacs Configuration ##
 
 I use Emacs for most of my text editing needs, on my various Mac or Linux
-systems. Mostly I'm coding something in either Ruby, Erlang, JavaScript,
-CoffeeScript or Java.
+systems. Mostly I'm coding something in either Haskell, OCaml, Erlang, JavaScript,
+CoffeeScript or Ruby.
 
 The basic structure of the directories is:
 
