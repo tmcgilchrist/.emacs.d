@@ -108,11 +108,11 @@ Assumes that the frame is only split into two."
 ;; 	    ;; add Erlang functions to an imenu menu
 ;; 	    (imenu-add-to-menubar "imenu")))
 
-(setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.7.1/emacs"
-      load-path))
-      (setq erlang-root-dir "/usr/local/otp")
-      (setq exec-path (cons "/usr/local/otp/bin" exec-path))
-      (require 'erlang-start)
+;; (setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.7.1/emacs"
+;;       load-path))
+;;       (setq erlang-root-dir "/usr/local/otp")
+;;       (setq exec-path (cons "/usr/local/otp/bin" exec-path))
+;;       (require 'erlang-start)
 
 ;; Originally from stevey, adapted to support moving to a new directory.
 (defun rename-file-and-buffer (new-name)
