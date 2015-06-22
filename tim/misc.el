@@ -116,3 +116,5 @@ Assumes that the frame is only split into two."
 
 (setq tramp-default-method "ssh")
 (setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
+
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
