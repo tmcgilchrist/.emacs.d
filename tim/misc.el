@@ -115,3 +115,4 @@ Assumes that the frame is only split into two."
  '(haskell-mode-hook '(turn-on-haskell-simple-indent)))
 
 (setq tramp-default-method "ssh")
+(setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
